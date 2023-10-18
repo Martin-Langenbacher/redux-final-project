@@ -1,6 +1,12 @@
 import { useState } from "react";
+import { connect } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-const NewQuestion = () => {
+import { handleAddQuestion } from "../actions/questions";
+
+const NewQuestion = ({ dispatch, id }) => {
+  const navigate = useNavigate();
+
   const maxLengthOfText = 150;
   const startToShow = 100;
   const [optionOneText, setOptionOneText] = useState("");
@@ -19,13 +25,19 @@ const NewQuestion = () => {
     submitEvent.preventDefault();
     //e2.preventDefault();
 
-    // TODO: Add question to store
+    // TODO: ADD_QUESTION is not working yet !!! Where is the new Question???
+    const questionML = { optionOneText, optionTwoText };
+    //dispatch(handleAddQuestion(optionOneText, optionTwoText, id));
+    dispatch(handleAddQuestion(questionML, id));
+    // TODO: Still an error... !!!!!
 
     console.log("One: ", optionOneText);
     console.log("Two: ", optionTwoText);
 
     setOptionOneText("");
     setOptionTwoText("");
+
+    navigate("/");
   };
 
   const questionTextOneLeft = maxLengthOfText - optionOneText.length;
@@ -39,7 +51,6 @@ const NewQuestion = () => {
       </div>
 
       <form className="new-question" onSubmit={handleSubmit}>
-        {/* TODO: Redirect to / if submitted */}
         <h5>First Option</h5>
         <textarea
           placeholder="Option One"
@@ -75,4 +86,4 @@ const NewQuestion = () => {
   );
 };
 
-export default NewQuestion;
+export default connect()(NewQuestion);
