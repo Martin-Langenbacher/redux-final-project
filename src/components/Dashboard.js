@@ -5,7 +5,7 @@ import Question from "./Question";
 const Dashboard = (props) => {
   return (
     <div>
-      <h3 className="center">New Questions</h3>
+      <h3 className="center">New Questions /Dashboard (Protected)</h3>
       <ul className="dashboard-list">
         {props.questionIds.map((id) => (
           <li key={id}>

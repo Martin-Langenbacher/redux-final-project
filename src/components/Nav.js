@@ -1,25 +1,39 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
-const Nav = () => {
+const Nav = ({ token, onLogout }) => {
+  return (
+    <nav>
+      <NavLink to="/home">Home</NavLink>
+      <NavLink to="/dashboard">Dashboard</NavLink>
+      {token && (
+        <button type="button" onClick={onLogout}>
+          Sign Out
+        </button>
+      )}
+    </nav>
+  );
+
+  /*
   return (
     <nav className="nav">
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <NavLink to="/">Home</NavLink>
         </li>
         <li>
-          <Link to="/leaderboard">Leaderboard</Link>
+          <NavLink to="/leaderboard">Leaderboard</NavLink>
         </li>
         <li>
-          <Link to="/new">New</Link>
+          <NavLink to="/new">New</NavLink>
         </li>
         <div>USER-XXX</div>
         <li>
-          <Link to="/">Logout</Link>
+          <NavLink to="/login">Logout</NavLink>
         </li>
       </ul>
     </nav>
   );
+  */
 };
 
 export default Nav;
