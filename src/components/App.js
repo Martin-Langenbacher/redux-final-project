@@ -13,29 +13,25 @@ import Nav from "./Nav";
 import Leaderboard from "./Leaderboard";
 import Login from "./Login";
 import NoMatch from "./NoMatch";
-import DashboardLearning from './DashboardLearning'
-import Home from './Home'
-import Navigation from './Navigation'
+import DashboardLearning from "./DashboardLearning";
+import Home from "./Home";
+import Navigation from "./Navigation";
+import AuthProvider from "./AuthProvider";
+import ProtectedRoute from "./ProtectedRoute";
 
 // TODO: Chapter 11 Liking a Tweet --> jumped over...
 
 // TODO: LoadingBar is not shown... WHY???
 
-const App = () => {
-  const [token, setToken] = React.useState(null);
+export const AuthContext = React.createContext(null);
 
-  const fakeAuth = () =>
+export const fakeAuth = () =>
   new Promise((resolve) => {
-    setTimeout(() => resolve('2342f2f1d131rf12'), 250);
+    setTimeout(() => resolve("2342f2f1d131rf12"), 250);
   });
 
-
-
-
-
-
-
-  
+const App = () => {
+  const [token, setToken] = React.useState(null);
 
   const handleLogin = async () => {
     const token = await fakeAuth();
@@ -47,21 +43,26 @@ const App = () => {
   };
 
   return (
-    <>
+    <AuthProvider>
       <h1>React Router - APP.js</h1>
 
-      <Navigation token={token} onLogout={handleLogout} />
-
-
+      <Navigation />
 
       <Routes>
-        <Route index element={<Home onLogin={handleLogin} />} />
-        <Route path="home" element={<Home onLogin={handleLogin} />} />
-        <Route path="dashboard" element={<Dashboard />} />
+        <Route index element={<Home />} />
+        <Route path="home" element={<Home />} />
+        <Route
+          path="dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
 
         <Route path="*" element={<NoMatch />} />
       </Routes>
-    </>
+    </AuthProvider>
   );
 };
 
