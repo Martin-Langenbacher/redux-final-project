@@ -14,6 +14,8 @@ code {
 
 
 
+
+
 body {
   margin: 0;
   padding: 0;
@@ -177,3 +179,112 @@ li {
   font-size: 20px;
   color: #c3392a;
 }
+
+/* Reset default styles ==========================*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Style for the navigation bar */
+.navbarML {
+  background-color: white; /* Background color */
+  color: #fff; /* Text color */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+/* Style for the navigation links container on the left */
+.navbar-left {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+
+
+
+
+/* Style for the navigation links */
+.navbarML li {
+  color: #eee222; /* Text color for links */
+  text-decoration: none;
+  margin-right: 15px; /* Add margin between links */
+  transition: color 0.2s; /* Add a smooth color transition */
+  display: inline; /* Display links in a horizontal row */
+}
+
+
+/* Style for the navigation links container on the right */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  margin-left: a; /* Push links to the right */
+  justify-content: right;
+}
+
+
+
+
+/* Style for the user icon */
+.user-iconML {
+  width: 30px; /* Adjust the size as needed */
+  height: 30px;
+  border-radius: 50%; /* Makes it a circle */
+  background-color: #fff; /* Background color of the icon */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333; /* Icon color */
+  font-size: 18px; /* Adjust the font size as needed */
+  cursor: pointer;
+}
+
+.picture-special {
+  padding-right: 2px;
+}
+
+.after-picture-special {
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 2px;
+}
+
+.line {
+  /* border-style: outset; */
+  width: 100%;
+  height: 0;
+  border: 1px solid #C4C4C4;
+  margin: 5px 5px 20px 5px;
+  display:inline-block;
+
+}
+
+
+
+
+
+
+  
+.float-parent-element { 
+  width: 100%; 
+} 
+.float-child-element { 
+  float: left; 
+  width: 50%; 
+} 
+.red { 
+  background-color: red; 
+  margin-left: 30%; 
+  height: 100px; 
+} 
+.yellow { 
+  margin-left: 30%; 
+  height: 100px; 
+  background-color: yellow; 
+}
+

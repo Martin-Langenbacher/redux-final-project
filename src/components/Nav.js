@@ -1,39 +1,48 @@
-import { Link, NavLink } from "react-router-dom";
+import { connect } from "react-redux";
+import { NavLink } from "react-router-dom";
 
-const Nav = ({ token, onLogout }) => {
+const Nav = (props, { token, onLogout }) => {
   return (
     <nav>
-      <NavLink to="/home">Home</NavLink>
-      <NavLink to="/dashboard">Dashboard</NavLink>
-      {token && (
-        <button type="button" onClick={onLogout}>
-          Sign Out
-        </button>
-      )}
-    </nav>
-  );
+      <div className="float-parent-element">
+        <div className="float-child-element">
+          <div className="navbar-left">
+            <li>
+              <NavLink to="/">Home</NavLink>
+            </li>
+            <li>
+              <NavLink to="/leaderboard">Leaderboard</NavLink>
+            </li>
+            <li>
+              <NavLink to="/new">New</NavLink>
+            </li>
+          </div>
+        </div>
+        <div className="float-child-element">
+          <div className="navbar-right">
+            <div className="picture-special">
+              <img
+                src={props.avatar?.avatarURL}
+                alt={`Avatar of ${props.authUser}`}
+                className="user-iconML"
+              />
+            </div>
 
-  /*
-  return (
-    <nav className="nav">
-      <ul>
-        <li>
-          <NavLink to="/">Home</NavLink>
-        </li>
-        <li>
-          <NavLink to="/leaderboard">Leaderboard</NavLink>
-        </li>
-        <li>
-          <NavLink to="/new">New</NavLink>
-        </li>
-        <div>USER-XXX</div>
-        <li>
-          <NavLink to="/login">Logout</NavLink>
-        </li>
-      </ul>
+            <div className="after-picture-special">{props.authUser}</div>
+            <li>
+              <NavLink to="/login">Logout</NavLink>
+            </li>
+          </div>
+        </div>
+      </div>
     </nav>
   );
-  */
 };
 
-export default Nav;
+const mapStateToProps = ({ authedUser, users }) => ({
+  authUser: authedUser,
+  userId: Object.keys(users),
+  avatar: users[authedUser],
+});
+
+export default connect(mapStateToProps)(Nav);

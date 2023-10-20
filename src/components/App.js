@@ -13,11 +13,11 @@ import Nav from "./Nav";
 import Leaderboard from "./Leaderboard";
 import Login from "./Login";
 import NoMatch from "./NoMatch";
-import DashboardLearning from "./DashboardLearning";
-import Home from "./Home";
-import Navigation from "./Navigation";
-import AuthProvider from "./AuthProvider";
-import ProtectedRoute from "./ProtectedRoute";
+// import DashboardLearning from "./DashboardLearning";
+// import Home from "./Home";
+// import Navigation from "./Navigation";
+// import AuthProvider from "./AuthProvider";
+// import ProtectedRoute from "./ProtectedRoute";
 
 // TODO: Chapter 11 Liking a Tweet --> jumped over...
 
@@ -30,6 +30,7 @@ export const fakeAuth = () =>
     setTimeout(() => resolve("2342f2f1d131rf12"), 250);
   });
 
+  /*
 const App = () => {
   const [token, setToken] = React.useState(null);
 
@@ -67,8 +68,9 @@ const App = () => {
 };
 
 export default App;
+*/
 
-/*
+
 function App(props) {
   useEffect(() => {
     props.dispatch(handleInitialData());
@@ -83,9 +85,9 @@ function App(props) {
         {userOK ? <Nav /> : <Login />}
         {/* <Nav /> */
 
-// }
+}
 
-/*
+
         {props.loading === true ? null : (
           <Routes>
             <Route path="/" exact element={<Dashboard />} />
@@ -108,4 +110,4 @@ const mapStateToProps = ({ authedUser }) => ({
 // export default App;
 export default connect(mapStateToProps)(App);
 
-*/
+

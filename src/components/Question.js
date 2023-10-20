@@ -9,7 +9,7 @@ const Question = (props) => {
   const showQuestion = () => {
     // const showQuestion = (e) => {
     // e.preventDefault();
-    // TODO: Jump to the detail page  ---->>>> Does not work yet... 
+    // TODO: Jump to the detail page  ---->>>> Does not work yet...
     navigate(`/question/${id}`);
   };
 
@@ -19,7 +19,13 @@ const Question = (props) => {
 
   const { name, timestamp, id } = props.question;
 
-  //   console.log("***Props: ", props);
+  //const { name, timestamp, id, avatar } = props.question;
+  // console.log("***Props: ", props);
+  // console.log("***Props: ", name);
+  // console.log("***Props: ", id);
+  // console.log("***Props: ", timestamp);
+  //console.log("***Props: ", avatar);
+
   return (
     <Link to={`/question/${id}`} className="question">
       <div>
