@@ -285,10 +285,108 @@ li {
 
 }
 
+.wouldYouRather {
+  margin-bottom: 20px;
+}
+
+.container-poll-page {
+  display: flex;
+ 
+}
+
+.poll-text-left {
+  width: 50%;
+  border-style: solid;
+  border-radius: 8px;
+  border-color:rgb(190, 196, 190);
+  border-width: 1px;
+  padding: 10px;
+  margin: 0 10px;
+}
+
+.poll-text-right {
+  flex: 1;
+  border-style: solid;
+  border-radius: 8px;
+  border-color:rgb(190, 196, 190);
+  border-width: 1px;
+  padding: 10px;
+  margin: 0 10px;
+}
+
+
+.table-wrapper {
+  border: 1px solid rgb(190, 196, 190);
+  border-radius: 5px; /* Add border radius to round the corners */
+  overflow: hidden; /* Hide table border overflow */
+}
+
+
+
+/* Add a class for the bordered table */
+.table-border {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+/* Style for table headers (column names) */
+.table-border th {
+  border: 1px solid #333; /* Border around header cells */
+  padding: 8px;
+  text-align: left;
+  background-color: rgb(231, 228, 228);
+  color: black;
+}
+
+/* Style for table data cells (columns) */
+.table-border td {
+  border: 1px solid #333; /* Border around data cells */
+  padding: 8px;
+}
+
+/* Hover effect for table rows */
+.table-border tbody tr:hover {
+  background-color: #f5f5f5;
+}
 
 
 
 
+
+
+
+
+
+
+
+
+.btn-poll {
+  color: white;
+  /* text-transform: uppercase; */
+  /* margin: 35px auto; */
+  padding: 8px; 
+  border: 1px solid rgba(0, 0, 0, 0.29);
+  cursor: pointer;
+  background: #33956a;
+  font-size: 16px;
+  width: 100%;
+  /* position: relative; */
+}
+
+.btn-poll:hover {
+  border-color: rgba(0, 0, 0, 0.5);
+  text-decoration: none;
+}
+
+.btn-poll:focus {
+  outline: 0;
+  font-weight: 700;
+  border-width: 2px;
+}
+
+.poll-text-text {
+  margin-bottom:  10px;
+}
 
   
 .float-parent-element { 
