@@ -2,17 +2,11 @@ import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 
 const PollPage = (props) => {
-  
-
   const { id } = useParams();
-  const question = props.questions[id];
   const questionText1 = props.questions[id].optionOne.text;
   const questionText2 = props.questions[id].optionTwo.text;
 
-  console.log("Props in PollPage>>>>>: ", props);
-  console.log("Question: ", question);
-  console.log("UserID: ", props.userId);
-  console.log("Avatar: ", props.avatar2);
+  const authorOfQuestionURL = props.users[props.questions[id].author].avatarURL;
 
   return (
     <div>
@@ -21,7 +15,7 @@ const PollPage = (props) => {
 
         <div className="big-picture-container">
           <img
-            src={props.avatar?.avatarURL}
+            src={authorOfQuestionURL}
             alt={`Avatar of ${props.authUser}`}
             className="user-iconBig"
           />
@@ -45,33 +39,14 @@ const PollPage = (props) => {
   );
 };
 
-const mapStateToProps = ({ authedUser, users, questions }, {id}) => {
-  const question = questions[id];
-
-
+const mapStateToProps = ({ authedUser, users, questions }) => {
   return {
     authUser: authedUser,
     userId: Object.keys(users),
     avatar: users[authedUser],
-    // avatar2: users[question.author],
     questions: questions,
+    users,
   };
 };
-
-/*
-const mapStateToProps = ({ authedUser, users, questions }, { id }) => {
-  const question = questions[id];
-
-  return {
-    authedUser,
-    question: formatQuestion(question, users[question.author], authedUser),
-    // question: question ? formatQuestion(question, users[question.author], authedUser) : null
-  };
-};
-
-
-
-
-*/
 
 export default connect(mapStateToProps)(PollPage);
