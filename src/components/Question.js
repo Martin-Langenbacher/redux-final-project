@@ -9,7 +9,6 @@ const Question = (props) => {
   const showQuestion = () => {
     // const showQuestion = (e) => {
     // e.preventDefault();
-    // TODO: Jump to the detail page  ---->>>> Does not work yet...
     navigate(`/question/${id}`);
   };
 
@@ -43,7 +42,6 @@ const Question = (props) => {
 
 const mapStateToProps = ({ authedUser, users, questions }, { id }) => {
   const question = questions[id];
-  // const parentTweet = tweet ? tweets[tweet.replayingTo] : null;
 
   return {
     authedUser,

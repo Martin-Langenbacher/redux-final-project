@@ -24,7 +24,7 @@ const Nav = (props, { token, onLogout }) => {
               <img
                 src={props.avatar?.avatarURL}
                 alt={`Avatar of ${props.authUser}`}
-                className="user-iconML"
+                className="user-iconSmall"
               />
             </div>
 
@@ -35,6 +35,7 @@ const Nav = (props, { token, onLogout }) => {
           </div>
         </div>
       </div>
+      <div className="line"></div>
     </nav>
   );
 };

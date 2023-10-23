@@ -3,11 +3,10 @@ import { connect } from "react-redux";
 import Question from "./Question";
 
 const Dashboard = (props) => {
-  console.log("Props in Dashboard.js: ", props);
+  //console.log("Props in Dashboard.js: ", props);
 
   return (
     <div>
-      <div className="line"></div>
       <h3 className="center">New Questions /Dashboard (Protected)</h3>
       <ul className="dashboard-list">
         {props.questionIds.map((id) => (
