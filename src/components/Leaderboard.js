@@ -1,25 +1,8 @@
 import { connect } from "react-redux";
 
+import { usersWithAnswers } from "../utils/helpers";
+
 const Leaderboard = (props) => {
-  console.log("Leaderboard (authUser): ", props.authUser);
-  console.log("Leaderboard (questions): ", props.questions);
-  console.log("Leaderboard (users): ", props.users);
-  console.log("Leaderboard (userIDs): ", props.userId);
-  console.log("Leaderboard (userIDs) >>>: ", props.blaIdML);
-
-  const entries = Object.entries(props.users);
-  entries.forEach(([key, value]) => {
-    console.log(`${key}: ${value.id}`);
-    console.log(`${key}: ${value.name}`);
-    console.log(`${key}: ${value.avatarURL}`);
-    console.log(`${key}: ${value.questions.length}`);
-  });
-
-  // props.users[0].forEach(element => {
-  //   console.log(element)
-
-  // });
-
   return (
     <div className="table-wrapper">
       <table className="table-border">
@@ -31,25 +14,22 @@ const Leaderboard = (props) => {
           </tr>
         </thead>
         <tbody>
-          {/* const authorOfQuestionURL = props.users[props.questions[id].author].avatarURL; */}
-
-          {props.userId.map((user) => {
+          {props.usersWithAnswers.map((user) => {
             return (
-              <tr>
+              <tr key={user.id}>
                 <td>
-                  {" "}
                   <div className="picture-special">
                     <img
-                      src={props.user?.avatarURL}
-                      alt={`Avatar of ${props.authUser}`}
+                      src={user.avatarURL}
+                      alt={`Avatar of ${user.authUser}`}
                       className="user-iconSmall"
                     />
                   </div>
-                  <div>Sarah Edo</div>
-                  {user}
+                  <div key={user.id}>{user.name}</div>
+                  <div>{user.id}</div>
                 </td>
-                <td>4</td>
-                <td>2</td>
+                <td>{user.answered}</td>
+                <td>{user.questions.length}</td>
               </tr>
             );
           })}
@@ -60,16 +40,13 @@ const Leaderboard = (props) => {
 };
 
 const mapStateToProps = ({ authedUser, users, questions }) => {
+  // TODO: DETLETE not needed parts!
   return {
-    authUser: authedUser,
-    userId: Object.keys(users),
-    blaIdML: Object.values(users),
-    // avatar: users[authedUser],
+    userArray: Object.values(users),
     questions: questions,
     users,
+    usersWithAnswers: Object.values(usersWithAnswers(questions, users)),
   };
 };
 
 export default connect(mapStateToProps)(Leaderboard);
-
-// export default connect(mapStateToProps)(PollPage);
