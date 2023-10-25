@@ -20,7 +20,6 @@ export function formatQuestion(question, author, authedUser) {
 
 export function usersWithAnswers(questions, users) {
   const newCombinedObject = {};
-  // const newUsers = {};
   let objectPerUser = {};
   const arrayUserAndCounts = [];
 
@@ -62,4 +61,48 @@ export function usersWithAnswers(questions, users) {
   });
 
   return newCombinedObject;
+}
+
+export function getIdsForNewQuestions(authedUser, questions) {
+  // Convert to an array - to filter
+  const questionsArray = Object.values(questions);
+
+  const iDsForNewQuestions = questionsArray.filter(
+    (question) =>
+      question.optionOne?.votes.includes(authedUser) ||
+      question.optionTwo?.votes.includes(authedUser)
+  );
+
+  // Convert the filtered array back to an object
+  const iDsForNewQuestionsObject = iDsForNewQuestions.reduce(
+    (acc, question) => {
+      acc[question.id] = question;
+      return acc;
+    },
+    {}
+  );
+
+  return iDsForNewQuestionsObject;
+}
+
+export function getIdsForDoneQuestions(authedUser, questions) {
+  // Convert to an array - to filter
+  const questionsArray = Object.values(questions);
+
+  const iDsForDoneQuestions = questionsArray.filter(
+    (question) =>
+      !question.optionOne?.votes.includes(authedUser) &&
+      !question.optionTwo?.votes.includes(authedUser)
+  );
+
+  // Convert the filtered array back to an object
+  const iDsForDoneQuestionsObject = iDsForDoneQuestions.reduce(
+    (acc, question) => {
+      acc[question.id] = question;
+      return acc;
+    },
+    {}
+  );
+
+  return iDsForDoneQuestionsObject;
 }
