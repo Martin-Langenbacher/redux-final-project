@@ -4,11 +4,11 @@ import { useNavigate } from "react-router-dom";
 
 import { handleAddQuestion } from "../actions/questions";
 
-const NewQuestion = ({ dispatch, id }) => {
+const NewQuestion = ({ dispatch }) => {
   const navigate = useNavigate();
 
-  const maxLengthOfText = 150;
-  const startToShow = 100;
+  const maxLengthOfText = 50;
+  const startToShow = 25;
   const [optionOneText, setOptionOneText] = useState("");
   const [optionTwoText, setOptionTwoText] = useState("");
 
@@ -23,16 +23,13 @@ const NewQuestion = ({ dispatch, id }) => {
 
   const handleSubmit = (submitEvent) => {
     submitEvent.preventDefault();
-    //e2.preventDefault();
-
-    // TODO: ADD_QUESTION is not working yet !!! Where is the new Question???
-    const questionML = { optionOneText, optionTwoText };
-    //dispatch(handleAddQuestion(optionOneText, optionTwoText, id));
-    dispatch(handleAddQuestion(questionML, id));
-    // TODO: Still an error... !!!!!
 
     console.log("One: ", optionOneText);
     console.log("Two: ", optionTwoText);
+    //console.log("author: ", props.authedUser);
+
+    dispatch(handleAddQuestion(optionOneText, optionTwoText));
+    console.log("After handleAddQuestion");
 
     setOptionOneText("");
     setOptionTwoText("");
@@ -49,7 +46,6 @@ const NewQuestion = ({ dispatch, id }) => {
         <h2>Would You Rather</h2>
         <h4>Create Your Own Poll</h4>
       </div>
-
       <form className="new-question" onSubmit={handleSubmit}>
         <h5>First Option</h5>
         <textarea
@@ -85,5 +81,13 @@ const NewQuestion = ({ dispatch, id }) => {
     </div>
   );
 };
+
+/*
+const mapStateToProps = ({ authedUser }) => ({
+  authedUser,
+});
+
+export default connect(mapStateToProps)(NewQuestion);
+*/
 
 export default connect()(NewQuestion);

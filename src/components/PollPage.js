@@ -3,10 +3,14 @@ import { connect } from "react-redux";
 
 const PollPage = (props) => {
   const { id } = useParams();
+
+  if (props.questions[id] === undefined || props.questions[id] === null) {
+    return <p>This Question doesn't exist!</p>;
+  }
+
   const questionText1 = props.questions[id].optionOne.text;
   const questionText2 = props.questions[id].optionTwo.text;
   const authorOfQuestion = props.questions[id].author;
-
   const authorOfQuestionURL = props.users[authorOfQuestion].avatarURL;
 
   return (

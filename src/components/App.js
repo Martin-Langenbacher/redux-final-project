@@ -2,7 +2,7 @@ import React from "react";
 
 import { useEffect, Fragment } from "react";
 import { connect } from "react-redux";
-import { LoadingBar } from "react-redux-loading-bar";
+import LoadingBar from "react-redux-loading-bar";
 import { Routes, Route } from "react-router-dom";
 
 import { handleInitialData } from "../actions/shared";
@@ -30,7 +30,7 @@ export const fakeAuth = () =>
     setTimeout(() => resolve("2342f2f1d131rf12"), 250);
   });
 
-  /*
+/*
 const App = () => {
   const [token, setToken] = React.useState(null);
 
@@ -70,7 +70,6 @@ const App = () => {
 export default App;
 */
 
-
 function App(props) {
   useEffect(() => {
     props.dispatch(handleInitialData());
@@ -83,10 +82,6 @@ function App(props) {
       <LoadingBar />
       <div className="container">
         {userOK ? <Nav /> : <Login />}
-        {/* <Nav /> */
-
-}
-
 
         {props.loading === true ? null : (
           <Routes>
@@ -109,5 +104,3 @@ const mapStateToProps = ({ authedUser }) => ({
 
 // export default App;
 export default connect(mapStateToProps)(App);
-
-

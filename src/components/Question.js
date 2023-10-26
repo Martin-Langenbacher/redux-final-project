@@ -12,11 +12,12 @@ const Question = (props) => {
     navigate(`/question/${id}`);
   };
 
+  const { name, timestamp, id } = props.question;
+
+  
   if (props.question === null) {
     return <p>This Question doesn't exist!</p>;
   }
-
-  const { name, timestamp, id } = props.question;
 
   //const { name, timestamp, id, avatar } = props.question;
   // console.log("***Props: ", props);
@@ -45,8 +46,9 @@ const mapStateToProps = ({ authedUser, users, questions }, { id }) => {
 
   return {
     authedUser,
-    question: formatQuestion(question, users[question.author], authedUser),
-    // question: question ? formatQuestion(question, users[question.author], authedUser) : null
+    //question: formatQuestion(question, users[question.author], authedUser),
+    question: question ? formatQuestion(question, users[question.author], authedUser) : null
+    // Chapter 10, Handle a parent tweet, 4:14
   };
 };
 
