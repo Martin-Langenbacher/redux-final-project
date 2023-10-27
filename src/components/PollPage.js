@@ -17,6 +17,10 @@ const PollPage = (props) => {
   const optionOneAmount = props.questions[id].optionOne.votes.length;
   const optionTwoAmount = props.questions[id].optionTwo.votes.length;
 
+  const authedUserAlreadyAnswered = Object.keys(
+    props.users[props.authUser].answers
+  ).includes(props.questions[id].id);
+
   return (
     <div>
       <div className="center">
@@ -51,10 +55,12 @@ const PollPage = (props) => {
         </div>
       </div>
       {/* TODO: Poll results only, if user answered question already !!! */}
-      <PollResults
-        optionOneAmount={optionOneAmount}
-        optionTwoAmount={optionTwoAmount}
-      />
+      {authedUserAlreadyAnswered && (
+        <PollResults
+          optionOneAmount={optionOneAmount}
+          optionTwoAmount={optionTwoAmount}
+        />
+      )}
     </div>
   );
 };
