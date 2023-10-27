@@ -69,8 +69,8 @@ export function getIdsForNewQuestions(authedUser, questions) {
 
   const iDsForNewQuestions = questionsArray.filter(
     (question) =>
-      question.optionOne?.votes.includes(authedUser) ||
-      question.optionTwo?.votes.includes(authedUser)
+      !question.optionOne?.votes.includes(authedUser) &&
+      !question.optionTwo?.votes.includes(authedUser)
   );
 
   // Convert the filtered array back to an object
@@ -91,8 +91,8 @@ export function getIdsForDoneQuestions(authedUser, questions) {
 
   const iDsForDoneQuestions = questionsArray.filter(
     (question) =>
-      !question.optionOne?.votes.includes(authedUser) &&
-      !question.optionTwo?.votes.includes(authedUser)
+      question.optionOne?.votes.includes(authedUser) ||
+      question.optionTwo?.votes.includes(authedUser)
   );
 
   // Convert the filtered array back to an object
