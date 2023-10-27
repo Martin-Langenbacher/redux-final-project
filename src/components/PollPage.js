@@ -2,8 +2,9 @@ import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 
 import PollResults from "./PollResults";
+import { handleVote } from "../actions/questions";
 
-const PollPage = (props) => {
+const PollPage = (props, { dispatch }) => {
   const { id } = useParams();
 
   if (props.questions[id] === undefined || props.questions[id] === null) {
@@ -20,6 +21,41 @@ const PollPage = (props) => {
   const authedUserAlreadyAnswered = Object.keys(
     props.users[props.authUser].answers
   ).includes(props.questions[id].id);
+
+  const vote1 = (e) => {
+    e.preventDefault()
+    console.log("You voted for answer 1");
+
+    dispatch(handleVote())
+    console.log("After handleAddQuestion");
+
+/*
+
+    const handleSubmit = (submitEvent) => {
+      submitEvent.preventDefault();
+  
+      console.log("One: ", optionOneText);
+      console.log("Two: ", optionTwoText);
+      //console.log("author: ", props.authedUser);
+  
+      dispatch(handleAddQuestion(optionOneText, optionTwoText));
+      console.log("After handleAddQuestion");
+  
+      setOptionOneText("");
+      setOptionTwoText("");
+  
+      navigate("/");
+    };
+    */
+
+
+
+    
+  };
+  const vote2 = () => {
+    console.log("You voted for answer 2");
+    
+  };
 
   return (
     <div>
@@ -41,13 +77,13 @@ const PollPage = (props) => {
           <div className="container-poll-page">
             <div className="poll-text-left">
               <div className="poll-text-text">{questionText1}</div>
-              <button className="btn-poll" type="submit">
+              <button className="btn-poll" onClick={vote1}>
                 Click
               </button>
             </div>
             <div className="poll-text-right">
               <div className="poll-text-text">{questionText2}</div>
-              <button className="btn-poll" type="submit">
+              <button className="btn-poll" onClick={vote2}>
                 Click
               </button>
             </div>
