@@ -369,10 +369,25 @@ li {
 }
 
 
+.poll-result-distance {
+  margin: 40px;
+}
+
+.poll-result {
+  color: black;
+  padding: 8px; 
+  border: 1px solid rgba(0, 0, 0, 0.29);
+  cursor: pointer;
+  background: #dad8d8;
+  font-size: 16px;
+  width: 100%;
+}
 
 
-
-
+.poll-result-title {
+  margin-bottom: 20px;
+  color: #a7a7a7;
+}
 
 
 

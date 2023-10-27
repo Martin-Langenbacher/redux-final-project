@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { usersWithAnswers } from "../utils/helpers";
 
 const Leaderboard = (props) => {
+  console.log('>>>>>> users', props)
+
   return (
     <div className="table-wrapper">
       <table className="table-border">
@@ -29,7 +31,7 @@ const Leaderboard = (props) => {
                   <div>{user.id}</div>
                 </td>
                 <td>{user.answered}</td>
-                <td>{user.questions.length}</td>
+                <td>Created: {user.questions.length}</td>
               </tr>
             );
           })}

@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 
+import PollResults from "./PollResults";
+
 const PollPage = (props) => {
   const { id } = useParams();
 
@@ -12,6 +14,8 @@ const PollPage = (props) => {
   const questionText2 = props.questions[id].optionTwo.text;
   const authorOfQuestion = props.questions[id].author;
   const authorOfQuestionURL = props.users[authorOfQuestion].avatarURL;
+  const optionOneAmount = props.questions[id].optionOne.votes.length;
+  const optionTwoAmount = props.questions[id].optionTwo.votes.length;
 
   return (
     <div>
@@ -46,6 +50,11 @@ const PollPage = (props) => {
           </div>
         </div>
       </div>
+      {/* TODO: Poll results only, if user answered question already !!! */}
+      <PollResults
+        optionOneAmount={optionOneAmount}
+        optionTwoAmount={optionTwoAmount}
+      />
     </div>
   );
 };
