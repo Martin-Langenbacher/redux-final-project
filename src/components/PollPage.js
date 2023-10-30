@@ -2,7 +2,9 @@ import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 
 import PollResults from "./PollResults";
+// TODO: Not needed
 import { handleVote } from "../actions/questions";
+import { handleSaveQuestionAnswer } from "../actions/users";
 
 const PollPage = (props, { dispatch }) => {
   const { id } = useParams();
@@ -23,38 +25,22 @@ const PollPage = (props, { dispatch }) => {
   ).includes(props.questions[id].id);
 
   const vote1 = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     console.log("You voted for answer 1");
+    console.log(props.authUser);
+    console.log("optionOne-Props", props);
+    console.log(props.questions[id]);
 
-    dispatch(handleVote())
-    console.log("After handleAddQuestion");
+    handleSaveQuestionAnswer(props.authUser, props.questions[id], "optionOne");
 
-/*
-
-    const handleSubmit = (submitEvent) => {
-      submitEvent.preventDefault();
-  
-      console.log("One: ", optionOneText);
-      console.log("Two: ", optionTwoText);
-      //console.log("author: ", props.authedUser);
-  
-      dispatch(handleAddQuestion(optionOneText, optionTwoText));
-      console.log("After handleAddQuestion");
-  
-      setOptionOneText("");
-      setOptionTwoText("");
-  
-      navigate("/");
-    };
-    */
-
-
-
-    
+    console.log("After handleAddQuestion - 1");
   };
-  const vote2 = () => {
+
+  const vote2 = (e) => {
+    e.preventDefault();
     console.log("You voted for answer 2");
-    
+    handleSaveQuestionAnswer(props.authUser, props.questions[id], "optionTwo");
+    console.log("After handleAddQuestion - 2");
   };
 
   return (
@@ -112,3 +98,40 @@ const mapStateToProps = ({ authedUser, users, questions }) => {
 };
 
 export default connect(mapStateToProps)(PollPage);
+
+// const vote11 = (e) => {
+//   e.preventDefault()
+//   console.log("You voted for answer 1");
+//const {dispatch, questions, authUser} = props
+/*
+  dispatch(handleToggleTweet({
+    id: tweet.id,
+    hasLiked: tweet.hasLiked,
+    authUser
+  })) */
+
+// NEED: --> function addPollAnswer(authedUser, questionId, optionTextAnswer){
+
+// dispatch(handleVote())
+// console.log("After handleAddQuestion");
+
+/*
+
+  const handleSubmit = (submitEvent) => {
+    submitEvent.preventDefault();
+
+    console.log("One: ", optionOneText);
+    console.log("Two: ", optionTwoText);
+    //console.log("author: ", props.authedUser);
+
+    dispatch(handleAddQuestion(optionOneText, optionTwoText));
+    console.log("After handleAddQuestion");
+
+    setOptionOneText("");
+    setOptionTwoText("");
+
+    navigate("/");
+  };
+  */
+
+// };

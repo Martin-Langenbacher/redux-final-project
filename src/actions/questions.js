@@ -3,15 +3,15 @@ import { showLoading, hideLoading } from "react-redux-loading-bar";
 
 export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS";
 export const ADD_QUESTION = "ADD_QUESTION";
-export const ADD_POLL_ANSWER = 'ADD_POLL_ANSWER'
+export const ADD_ANSWER_TO_QUESTION = 'ADD_ANSWER_TO_QUESTION'
 
 // 1) Start...
-function addPollAnswer(id, authedUser, user, optionTextAnswer){
+export function addAnswerToQuestion(authedUser, questionId, optionTextAnswer){
+  // function addPollAnswer(authedUser, questionId, optionTextAnswer){
   return {
-    type: ADD_POLL_ANSWER,
-    id,
+    type: ADD_ANSWER_TO_QUESTION,
     authedUser,
-    user,
+    questionId,
     optionTextAnswer
   }
 }
@@ -48,10 +48,13 @@ export function receiveQuestions(questions) {
 }
 
 // 2) async-Function
+// TODO: Not here....
+/*
 export function handleVote(answer, questionId) {
   return (dispatch, getState) => {
     const { authedUser } = getState();
 
+    //dispatch(toggleTweet(info))
     dispatch(showLoading());
 
     return saveQuestionAnswer({
@@ -63,6 +66,11 @@ export function handleVote(answer, questionId) {
       .then(() => dispatch(hideLoading));
   };
 }
+
+*/
+
+
+
 
 /*
 export function _saveQuestionAnswer({ authedUser, qid, answer }) 

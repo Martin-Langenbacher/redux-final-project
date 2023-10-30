@@ -1,7 +1,7 @@
 import {
   RECEIVE_QUESTIONS,
   ADD_QUESTION,
-  ADD_POLL_ANSWER,
+  ADD_ANSWER_TO_QUESTION,
 } from "../actions/questions";
 
 export default function questions(state = {}, action) {
@@ -19,13 +19,23 @@ export default function questions(state = {}, action) {
         [action.question.id]: action.question,
         // replyingTo
       };
-    case ADD_POLL_ANSWER:
-      const { question } = action;
-      const { user } = action;
 
-      // TODO: Take new tweet and add it as a property to
+    // TODO: Check if correct !!!       <==================================
+    case ADD_ANSWER_TO_QUESTION:
+      const { authUser, qid, answer } = action;
+      //const { question } = action;
+      //const { user } = action;
 
-      return {};
+      return {
+        ...state,
+        [qid]: {
+          ...state[qid],
+          [answer]: {
+            ...state[qid][answer],
+            votes: state[qid][answer].votes.concat(authUser),
+          },
+        },
+      };
     default:
       return state;
   }
