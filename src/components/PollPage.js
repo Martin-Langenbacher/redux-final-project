@@ -29,9 +29,9 @@ const PollPage = (props, { dispatch }) => {
     console.log("You voted for answer 1");
     console.log(props.authUser);
     console.log("optionOne-Props", props);
-    console.log(props.questions[id]);
+    console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', props.questions[id].id);
 
-    handleSaveQuestionAnswer(props.authUser, props.questions[id], "optionOne");
+    handleSaveQuestionAnswer(props.authUser, props.questions[id].id, "optionOne");
 
     console.log("After handleAddQuestion - 1");
   };

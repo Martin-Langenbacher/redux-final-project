@@ -3,19 +3,22 @@ import { showLoading, hideLoading } from "react-redux-loading-bar";
 
 export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS";
 export const ADD_QUESTION = "ADD_QUESTION";
-export const ADD_ANSWER_TO_QUESTION = 'ADD_ANSWER_TO_QUESTION'
+export const ADD_ANSWER_TO_QUESTION = "ADD_ANSWER_TO_QUESTION";
 
 // 1) Start...
-export function addAnswerToQuestion(authedUser, questionId, optionTextAnswer){
+export function addAnswerToQuestion(authedUser, questionId, optionTextAnswer) {
   // function addPollAnswer(authedUser, questionId, optionTextAnswer){
+  console.log("addAnswerToQuestion: ############## 1", authedUser);
+  console.log("addAnswerToQuestion: ############## 2", questionId);
+  console.log("addAnswerToQuestion: ############## 3", optionTextAnswer);
+
   return {
     type: ADD_ANSWER_TO_QUESTION,
     authedUser,
     questionId,
-    optionTextAnswer
-  }
+    optionTextAnswer,
+  };
 }
-
 
 function addQuestion(question) {
   return {
@@ -66,10 +69,7 @@ export function handleVote(answer, questionId) {
       .then(() => dispatch(hideLoading));
   };
 }
-
 */
-
-
 
 
 /*

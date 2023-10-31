@@ -13,6 +13,9 @@ export function receiveUsers(users) {
 }
 
 function addAnswerToUser(authUser, qid, answer) {
+  console.log("addAnswerToUser: ############## 1", authUser);
+  console.log("addAnswerToUser: ############## 2", qid);
+  console.log("addAnswerToUser: ############## 3", answer);
   return {
     type: ADD_ANSWER_TO_USER,
     authUser,
@@ -22,6 +25,11 @@ function addAnswerToUser(authUser, qid, answer) {
 }
 
 export function handleSaveQuestionAnswer(authUser, qid, answer) {
+  console.log("handleSaveQuestionAnswer: ############## 1", authUser);
+  console.log("handleSaveQuestionAnswer: ############## 2", qid);
+  console.log("handleSaveQuestionAnswer: ############## 3", answer);
+
+  // TODO: This does not work !!!
   return (dispatch) => {
     dispatch(addAnswerToUser(authUser, qid, answer));
     dispatch(addAnswerToQuestion(authUser, qid, answer));
