@@ -24,23 +24,17 @@ const PollPage = (props, { dispatch }) => {
     props.users[props.authUser].answers
   ).includes(props.questions[id].id);
 
-  const vote1 = (e) => {
+  const vote = (e) => {
     e.preventDefault();
-    console.log("You voted for answer 1");
-    console.log(props.authUser);
-    console.log("optionOne-Props", props);
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>', props.questions[id].id);
+    console.log("Your Value anser: ", e.target.value);
+    console.log("User: ", props.authUser);
+    handleSaveQuestionAnswer(
+      props.authUser,
+      props.questions[id].id,
+      e.target.value
+    );
 
-    handleSaveQuestionAnswer(props.authUser, props.questions[id].id, "optionOne");
-
-    console.log("After handleAddQuestion - 1");
-  };
-
-  const vote2 = (e) => {
-    e.preventDefault();
-    console.log("You voted for answer 2");
-    handleSaveQuestionAnswer(props.authUser, props.questions[id], "optionTwo");
-    console.log("After handleAddQuestion - 2");
+    console.log("After handleAddQuestion - 2", e.target.value);
   };
 
   return (
@@ -63,13 +57,13 @@ const PollPage = (props, { dispatch }) => {
           <div className="container-poll-page">
             <div className="poll-text-left">
               <div className="poll-text-text">{questionText1}</div>
-              <button className="btn-poll" onClick={vote1}>
+              <button value="optionOne" className="btn-poll" onClick={vote}>
                 Click
               </button>
             </div>
             <div className="poll-text-right">
               <div className="poll-text-text">{questionText2}</div>
-              <button className="btn-poll" onClick={vote2}>
+              <button value="optionTwo" className="btn-poll" onClick={vote}>
                 Click
               </button>
             </div>
