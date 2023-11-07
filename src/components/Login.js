@@ -1,44 +1,54 @@
 import React, { useState } from "react";
+import { useDispatch, connect } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import classes from "./Login.module.css";
+import { setAuthedUser } from "../actions/authedUser";
 
-const Login = () => {
-  // const Login = ({handleLogin}) => {
+const Login = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLoggedIn, setLoggedIn] = useState(false);
 
-  const loginHandler = (event) => {
-    event.preventDefault();
-
-    //dispatch(authActions.login());
-  };
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleLogin = (e) => {
-    e.preventDefault()
-    console.log("Username: ", username);
-    console.log("PW: ", password);
+    e.preventDefault();
 
-    /*
+    console.log("*** Username-ENTERED: ", username);
+    console.log("*** PW-ENTERED: ", password);
 
+    // 1) user exists - or not
+    const usersArray = Object.values(props.users);
+    const userIfExists = usersArray.filter((user) => user.id === username);
 
-    // Simulate authentication (replace this with your actual authentication logic)
-    if (username === "user" && password === "password") {
-      setLoggedIn(true);
+    if (userIfExists.length === 0) {
+      alert("Invalid username: User does not exist!");
+      return;
+    }
+
+    // 2) if user exists, is pw correct?
+    if (userIfExists[0].password === password) {
+      // 3) LogIn
+      console.log("Login - O K !!!");
+      //setLoggedIn(true);
+      dispatch(setAuthedUser(username));
+      navigate("/");
     } else {
-      alert("Invalid username or password");
-    } */
+      alert("Invalid password: Please enter the correct PW!");
+      return;
+    }
   };
 
   return (
     <>
-    <h2 className={classes.headline}>Login</h2>
+      <h2 className={classes.headline}>Login</h2>
       <div className={classes.headlineP}>
         {isLoggedIn ? (
           <p>You are logged in!</p>
         ) : (
           <main className={classes.auth}>
-            
             <section>
               <form>
                 <div className={classes.control}>
@@ -61,98 +71,18 @@ const Login = () => {
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
-                {/* <button onClick={loginHandler}>Login</button> */}
                 <button onClick={handleLogin}>Login</button>
               </form>
             </section>
           </main>
         )}
       </div>
-
-      {/* <div>
-        {isLoggedIn ? (
-          <p>You are logged in!</p>
-        ) : (
-          <div>
-            <h2>Login</h2>
-            <input
-              type="text"
-              placeholder="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-            <input
-              type="password"
-              id="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <button onClick={handleLogin}>Login</button>
-          </div>
-        )}
-      </div> */}
-
-
-      {/* <main className={classes.auth}>
-        <section>
-          <form>
-            <div className={classes.control}>
-              <label htmlFor="user">Username</label>
-              <input type="user" id="user" />
-            </div>
-            <div className={classes.control}>
-              <label htmlFor="password">Password</label>
-              <input type="password" id="password" />
-            </div>
-            <button onClick={loginHandler}>Login</button>
-          </form>
-        </section>
-      </main> */}
     </>
   );
 };
 
-export default Login;
+const mapStateToProps = ({ users }) => ({
+  users,
+});
 
-/*
-
-import { useDispatch } from "react-redux";
-
-import classes from './Login.module.css'
-
-
-//import { authActions } from "../store/auth";
-
-const Login = () => {
-  const dispatch = useDispatch();
-
-  
-
-
-
-
-
-  return (
-    <main className={classes.auth}>
-      <section>
-        <form>
-          <div className={classes.control}>
-            <label htmlFor="email">Email</label>
-            <input type="email" id="email" />
-          </div>
-          <div className={classes.control}>
-            <label htmlFor="password">Password</label>
-            <input type="password" id="password" />
-          </div>
-          <button onClick={loginHandler}>Login</button>
-        </form>
-      </section>
-    </main>
-  );
-};
-
-export default Login;
-
-
-*/
+export default connect(mapStateToProps)(Login);

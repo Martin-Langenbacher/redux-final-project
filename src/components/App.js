@@ -12,6 +12,7 @@ import PollPage from "./PollPage";
 import Nav from "./Nav";
 import Leaderboard from "./Leaderboard";
 import Login from "./Login";
+import Logout from "./Logout";
 import NoMatch from "./NoMatch";
 // import DashboardLearning from "./DashboardLearning";
 // import Home from "./Home";
@@ -75,7 +76,9 @@ function App(props) {
     props.dispatch(handleInitialData());
   }, []);
 
-  const userOK = true;
+  console.log('>>>>>>>>>>>>>>> Props: ', props.loading)
+  console.log('>>>>>>>>>>>>>>> Props: ', props.authedUser)
+  const userOK = props.authedUser ? true : false;
 
   return (
     <Fragment>
@@ -90,6 +93,7 @@ function App(props) {
             <Route path="/question/:id" element={<PollPage />} />
             <Route path="/new" element={<NewQuestion />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/logout" element={<Logout />} />
             <Route path="*" element={<NoMatch />} />
           </Routes>
         )}
@@ -100,6 +104,7 @@ function App(props) {
 
 const mapStateToProps = ({ authedUser }) => ({
   loading: authedUser === null,
+  authedUser,
 });
 
 // export default App;

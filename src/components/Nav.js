@@ -30,7 +30,7 @@ const Nav = (props, { token, onLogout }) => {
 
             <div className="after-picture-special">{props.authUser}</div>
             <li>
-              <NavLink to="/login">Logout</NavLink>
+              <NavLink to="/logout">Logout</NavLink>
             </li>
           </div>
         </div>

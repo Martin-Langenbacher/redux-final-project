@@ -42,7 +42,7 @@ const Leaderboard = (props) => {
 };
 
 const mapStateToProps = ({ authedUser, users, questions }) => {
-  // TODO: DETLETE not needed parts!
+  // TODO: DELETE the part which is not needed - !
   return {
     userArray: Object.values(users),
     questions: questions,
