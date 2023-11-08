@@ -8,16 +8,13 @@ import { setAuthedUser } from "../actions/authedUser";
 const Login = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [isLoggedIn, setLoggedIn] = useState(false);
+  //const [isLoggedIn, setLoggedIn] = useState(false);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleLogin = (e) => {
     e.preventDefault();
-
-    console.log("*** Username-ENTERED: ", username);
-    console.log("*** PW-ENTERED: ", password);
 
     // 1) user exists - or not
     const usersArray = Object.values(props.users);
@@ -43,6 +40,49 @@ const Login = (props) => {
 
   return (
     <>
+      <h2 className={classes.headline}>Login</h2>
+      <div className={classes.headlineP}>
+        <main className={classes.auth}>
+          <section>
+            <form>
+              <div className={classes.control}>
+                <label htmlFor="user">Username</label>
+                <input
+                  type="user"
+                  id="user"
+                  placeholder="Username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+              </div>
+              <div className={classes.control}>
+                <label htmlFor="password">Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+              <button className={classes.buttonStyle} onClick={handleLogin}>Login</button>
+            </form>
+          </section>
+        </main>
+      </div>
+    </>
+  );
+};
+
+const mapStateToProps = ({ users }) => ({
+  users,
+});
+
+export default connect(mapStateToProps)(Login);
+
+/*
+
+  <>
       <h2 className={classes.headline}>Login</h2>
       <div className={classes.headlineP}>
         {isLoggedIn ? (
@@ -79,10 +119,5 @@ const Login = (props) => {
       </div>
     </>
   );
-};
 
-const mapStateToProps = ({ users }) => ({
-  users,
-});
-
-export default connect(mapStateToProps)(Login);
+*/

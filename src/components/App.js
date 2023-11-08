@@ -22,8 +22,6 @@ import NoMatch from "./NoMatch";
 
 // TODO: Chapter 11 Liking a Tweet --> jumped over...
 
-// TODO: LoadingBar is not shown... WHY???
-
 export const AuthContext = React.createContext(null);
 
 export const fakeAuth = () =>
@@ -31,61 +29,18 @@ export const fakeAuth = () =>
     setTimeout(() => resolve("2342f2f1d131rf12"), 250);
   });
 
-/*
-const App = () => {
-  const [token, setToken] = React.useState(null);
-
-  const handleLogin = async () => {
-    const token = await fakeAuth();
-    setToken(token);
-  };
-
-  const handleLogout = () => {
-    setToken(null);
-  };
-
-  return (
-    <AuthProvider>
-      <h1>React Router - APP.js</h1>
-
-      <Navigation />
-
-      <Routes>
-        <Route index element={<Home />} />
-        <Route path="home" element={<Home />} />
-        <Route
-          path="dashboard"
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route path="*" element={<NoMatch />} />
-      </Routes>
-    </AuthProvider>
-  );
-};
-
-export default App;
-*/
-
 function App(props) {
   useEffect(() => {
     props.dispatch(handleInitialData());
   }, []);
-
-  console.log('>>>>>>>>>>>>>>> Props: ', props.loading)
-  console.log('>>>>>>>>>>>>>>> Props: ', props.authedUser)
-  const userOK = props.authedUser ? true : false;
+  // const userOK = props.authedUser ? true : false;
 
   return (
     <Fragment>
       <LoadingBar />
       <div className="container">
-        {userOK ? <Nav /> : <Login />}
-
+        {/* {userOK ? <Nav /> : <Login />} */}
+        {props.authedUser ? <Nav /> : <Login />}
         {props.loading === true ? null : (
           <Routes>
             <Route path="/" exact element={<Dashboard />} />

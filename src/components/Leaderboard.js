@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { usersWithAnswers } from "../utils/helpers";
 
 const Leaderboard = (props) => {
-  console.log('>>>>>> users', props)
+  //console.log('>>>>>> users', props)
 
   return (
     <div className="table-wrapper">

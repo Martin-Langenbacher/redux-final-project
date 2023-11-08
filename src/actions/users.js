@@ -25,13 +25,7 @@ function addAnswerToUser(authUser, qid, answer) {
 }
 
 export function handleSaveQuestionAnswer(authUser, qid, answer) {
-  console.log("handleSaveQuestionAnswer: ############## 1+++++", authUser);
-  console.log("handleSaveQuestionAnswer: ############## 2+++++", qid);
-  console.log("handleSaveQuestionAnswer: ############## 3+++++", answer);
-
-  // TODO: This does not work !!!
   return (dispatch) => {
-    console.log('>>>>>>>>>>>>>>>>>>>>>>>>>********')
     dispatch(addAnswerToUser(authUser, qid, answer));
     dispatch(addAnswerToQuestion(authUser, qid, answer));
 
