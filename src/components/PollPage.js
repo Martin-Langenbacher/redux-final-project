@@ -1,13 +1,13 @@
 import { useParams } from "react-router-dom";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 
 import PollResults from "./PollResults";
-// TODO: Not needed
-import { handleVote } from "../actions/questions";
 import { handleSaveQuestionAnswer } from "../actions/users";
 
-const PollPage = (props, { dispatch }) => {
+const PollPage = (props ) => {
+  //const PollPage = (props, { dispatch }) => {
   const { id } = useParams();
+  const dispatch = useDispatch();
 
   if (props.questions[id] === undefined || props.questions[id] === null) {
     return <p>This Question doesn't exist!</p>;
@@ -26,15 +26,21 @@ const PollPage = (props, { dispatch }) => {
 
   const vote = (e) => {
     e.preventDefault();
-    console.log("Your Value anser: ", e.target.value);
-    console.log("User: ", props.authUser);
-    handleSaveQuestionAnswer(
+    console.log("1) Your Value anser: ", e.target.value);
+    console.log("2) User: ", props.authUser);
+    console.log("3) props.questions[id].id: ", props.questions[id].id);
+    
+    console.log("4) props ", props);
+    console.log("4) dispatch ", dispatch);
+    console.log("4) props.questions[id].id: ", handleSaveQuestionAnswer);
+
+    dispatch(handleSaveQuestionAnswer(
       props.authUser,
       props.questions[id].id,
       e.target.value
-    );
+    ));
 
-    console.log("After handleAddQuestion - 2", e.target.value);
+    console.log("99) After handleAddQuestion - 2", e.target.value);
   };
 
   return (
@@ -70,7 +76,6 @@ const PollPage = (props, { dispatch }) => {
           </div>
         </div>
       </div>
-      {/* TODO: Poll results only, if user answered question already !!! */}
       {authedUserAlreadyAnswered && (
         <PollResults
           optionOneAmount={optionOneAmount}
@@ -91,41 +96,5 @@ const mapStateToProps = ({ authedUser, users, questions }) => {
   };
 };
 
-export default connect(mapStateToProps)(PollPage);
+export default connect(mapStateToProps, {handleSaveQuestionAnswer})(PollPage);
 
-// const vote11 = (e) => {
-//   e.preventDefault()
-//   console.log("You voted for answer 1");
-//const {dispatch, questions, authUser} = props
-/*
-  dispatch(handleToggleTweet({
-    id: tweet.id,
-    hasLiked: tweet.hasLiked,
-    authUser
-  })) */
-
-// NEED: --> function addPollAnswer(authedUser, questionId, optionTextAnswer){
-
-// dispatch(handleVote())
-// console.log("After handleAddQuestion");
-
-/*
-
-  const handleSubmit = (submitEvent) => {
-    submitEvent.preventDefault();
-
-    console.log("One: ", optionOneText);
-    console.log("Two: ", optionTwoText);
-    //console.log("author: ", props.authedUser);
-
-    dispatch(handleAddQuestion(optionOneText, optionTwoText));
-    console.log("After handleAddQuestion");
-
-    setOptionOneText("");
-    setOptionTwoText("");
-
-    navigate("/");
-  };
-  */
-
-// };

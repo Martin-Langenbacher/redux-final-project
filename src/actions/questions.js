@@ -8,15 +8,15 @@ export const ADD_ANSWER_TO_QUESTION = "ADD_ANSWER_TO_QUESTION";
 // 1) Start...
 export function addAnswerToQuestion(authedUser, questionId, optionTextAnswer) {
   // function addPollAnswer(authedUser, questionId, optionTextAnswer){
-  console.log("addAnswerToQuestion: ############## 1", authedUser);
-  console.log("addAnswerToQuestion: ############## 2", questionId);
-  console.log("addAnswerToQuestion: ############## 3", optionTextAnswer);
+  // console.log("addAnswerToQuestion: ############## 1", authedUser);
+  // console.log("addAnswerToQuestion: ############## 2", questionId);
+  // console.log("addAnswerToQuestion: ############## 3", optionTextAnswer);
 
   return {
     type: ADD_ANSWER_TO_QUESTION,
-    authedUser,
-    questionId,
-    optionTextAnswer,
+    authUser: authedUser,
+    qid: questionId,
+    answer: optionTextAnswer,
   };
 }
 
@@ -39,7 +39,7 @@ export function handleAddQuestion(optionText1, optionText2) {
       author: authedUser,
     })
       .then((question) => dispatch(addQuestion(question)))
-      .then(() => dispatch(hideLoading));
+      .then(() => dispatch(hideLoading()));
   };
 }
 

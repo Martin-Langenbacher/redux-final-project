@@ -19,7 +19,22 @@ export default function questions(state = {}, action) {
         [action.question.id]: action.question,
         // replyingTo
       };
+      case ADD_ANSWER_TO_QUESTION:
+      const { authUser, qid, answer } = action;
+      console.log('-------------------------------->', action, authUser, qid, answer)
 
+      return {
+        ...state,
+        [qid]: {
+          ...state[qid],
+          [answer]: {
+            ...state[qid][answer],
+            votes: state[qid][answer].votes.concat(authUser)
+          }
+        }
+      };
+
+      /*
     // TODO: Check if correct !!!       <==================================
     case ADD_ANSWER_TO_QUESTION:
       const { authUser, qid, answer } = action;
@@ -36,6 +51,7 @@ export default function questions(state = {}, action) {
           },
         },
       };
+      */
     default:
       return state;
   }
