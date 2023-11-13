@@ -4,8 +4,7 @@ import { connect, useDispatch } from "react-redux";
 import PollResults from "./PollResults";
 import { handleSaveQuestionAnswer } from "../actions/users";
 
-const PollPage = (props ) => {
-  //const PollPage = (props, { dispatch }) => {
+const PollPage = (props) => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
@@ -26,19 +25,14 @@ const PollPage = (props ) => {
 
   const vote = (e) => {
     e.preventDefault();
-    console.log("1) Your Value anser: ", e.target.value);
-    console.log("2) User: ", props.authUser);
-    console.log("3) props.questions[id].id: ", props.questions[id].id);
-    
-    console.log("4) props ", props);
-    console.log("4) dispatch ", dispatch);
-    console.log("4) props.questions[id].id: ", handleSaveQuestionAnswer);
 
-    dispatch(handleSaveQuestionAnswer(
-      props.authUser,
-      props.questions[id].id,
-      e.target.value
-    ));
+    dispatch(
+      handleSaveQuestionAnswer(
+        props.authUser,
+        props.questions[id].id,
+        e.target.value
+      )
+    );
 
     console.log("99) After handleAddQuestion - 2", e.target.value);
   };
@@ -96,5 +90,4 @@ const mapStateToProps = ({ authedUser, users, questions }) => {
   };
 };
 
-export default connect(mapStateToProps, {handleSaveQuestionAnswer})(PollPage);
-
+export default connect(mapStateToProps, { handleSaveQuestionAnswer })(PollPage);

@@ -21,7 +21,7 @@ export default function questions(state = {}, action) {
       };
       case ADD_ANSWER_TO_QUESTION:
       const { authUser, qid, answer } = action;
-      console.log('-------------------------------->', action, authUser, qid, answer)
+      console.log('ADD_ANSWER_TO_QUESTION: action, authUser, qid, answer: --->', action, authUser, qid, answer)
 
       return {
         ...state,

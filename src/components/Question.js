@@ -19,13 +19,6 @@ const Question = (props) => {
     return <p>This Question doesn't exist!</p>;
   }
 
-  //const { name, timestamp, id, avatar } = props.question;
-  // console.log("***Props: ", props);
-  // console.log("***Props: ", name);
-  // console.log("***Props: ", id);
-  // console.log("***Props: ", timestamp);
-  //console.log("***Props: ", avatar);
-
   return (
     <Link to={`/question/${id}`} className="question">
       <div>

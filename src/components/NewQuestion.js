@@ -24,12 +24,7 @@ const NewQuestion = ({ dispatch }) => {
   const handleSubmit = (submitEvent) => {
     submitEvent.preventDefault();
 
-    console.log("One: ", optionOneText);
-    console.log("Two: ", optionTwoText);
-    //console.log("author: ", props.authedUser);
-
     dispatch(handleAddQuestion(optionOneText, optionTwoText));
-    console.log("After handleAddQuestion");
 
     setOptionOneText("");
     setOptionTwoText("");

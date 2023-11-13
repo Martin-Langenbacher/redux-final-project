@@ -30,8 +30,6 @@ export const fakeAuth = () =>
   });
 
 function App(props) {
-  console.log("3) 444444444444props.questions[id].id: ", props.dispatch);
-  console.log("3) Props.questions[id].id: ", props);
   useEffect(() => {
     props.dispatch(handleInitialData());
   }, []);
