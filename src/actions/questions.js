@@ -1,5 +1,7 @@
-import { saveQuestion } from "../utils/api";
 import { showLoading, hideLoading } from "react-redux-loading-bar";
+
+import { saveQuestion } from "../utils/api";
+import { addQuestionToUser } from "../actions/users";
 
 export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS";
 export const ADD_QUESTION = "ADD_QUESTION";
@@ -18,6 +20,7 @@ export function addAnswerToQuestion(authedUser, questionId, optionTextAnswer) {
 }
 
 function addQuestion(question) {
+  console.log("*************************************", question);
   return {
     type: ADD_QUESTION,
     question,

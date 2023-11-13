@@ -13,33 +13,17 @@ export default function questions(state = {}, action) {
       };
     case ADD_QUESTION:
       //const { question } = action;
+      console.log(
+        "ADD_ANSWER_TO_QUESTION: action, authUser, qid, answer: --->",
+        action,
+      );
 
       return {
         ...state,
         [action.question.id]: action.question,
-        // replyingTo
       };
-      case ADD_ANSWER_TO_QUESTION:
-      const { authUser, qid, answer } = action;
-      console.log('ADD_ANSWER_TO_QUESTION: action, authUser, qid, answer: --->', action, authUser, qid, answer)
-
-      return {
-        ...state,
-        [qid]: {
-          ...state[qid],
-          [answer]: {
-            ...state[qid][answer],
-            votes: state[qid][answer].votes.concat(authUser)
-          }
-        }
-      };
-
-      /*
-    // TODO: Check if correct !!!       <==================================
     case ADD_ANSWER_TO_QUESTION:
       const { authUser, qid, answer } = action;
-      //const { question } = action;
-      //const { user } = action;
 
       return {
         ...state,
@@ -51,7 +35,7 @@ export default function questions(state = {}, action) {
           },
         },
       };
-      */
+
     default:
       return state;
   }

@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { handleAddQuestion } from "../actions/questions";
+import { addQuestionToUser } from "../actions/users";
 
-const NewQuestion = ({ dispatch }) => {
+const NewQuestion = ( { dispatch }) => {
   const navigate = useNavigate();
 
   const maxLengthOfText = 50;
@@ -25,6 +26,27 @@ const NewQuestion = ({ dispatch }) => {
     submitEvent.preventDefault();
 
     dispatch(handleAddQuestion(optionOneText, optionTwoText));
+    //console.log('+++++++++++++++++++++++++++++>>>', props.question, props.authedUser)
+    //dispatch(addQuestionToUser(props.question, props.authedUser));
+
+    // dispatch(addQuestionToUser({ id, author }))
+
+    /*
+
+      .then((question) => console.log('+++++++++++++++++++++++', Object.values(question[1])))
+      .then((question) => dispatch(addQuestionToUser(question.id, authedUser)))
+
+
+
+
+
+export function addQuestionToUser({ id, author }) {
+  return {
+    type: ADD_QUESTION_TO_USER,
+    id,
+    author,
+  };
+*/
 
     setOptionOneText("");
     setOptionTwoText("");
@@ -84,5 +106,6 @@ const mapStateToProps = ({ authedUser }) => ({
 
 export default connect(mapStateToProps)(NewQuestion);
 */
+
 
 export default connect()(NewQuestion);

@@ -23,6 +23,8 @@ const PollPage = (props) => {
     props.users[props.authUser].answers
   ).includes(props.questions[id].id);
 
+  console.log("-----> authedUserAlreadyAnswered: ", authedUserAlreadyAnswered);
+
   const vote = (e) => {
     e.preventDefault();
 
@@ -34,7 +36,7 @@ const PollPage = (props) => {
       )
     );
 
-    console.log("99) After handleAddQuestion - 2", e.target.value);
+    console.log("99) After handleSaveQuestionAnswer - 2", e.target.value);
   };
 
   return (

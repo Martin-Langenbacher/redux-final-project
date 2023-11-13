@@ -39,9 +39,7 @@ const mapStateToProps = ({ authedUser, users, questions }, { id }) => {
 
   return {
     authedUser,
-    //question: formatQuestion(question, users[question.author], authedUser),
     question: question ? formatQuestion(question, users[question.author], authedUser) : null
-    // Chapter 10, Handle a parent tweet, 4:14
   };
 };
 

@@ -170,10 +170,13 @@ export function _saveQuestion(question) {
       !question.optionTwoText ||
       !question.author
     ) {
-      reject("_Data.js: Please provide optionOneText, optionTwoText, and author");
+      reject(
+        "_Data.js: Please provide optionOneText, optionTwoText, and author"
+      );
     }
 
     const formattedQuestion = formatQuestion(question);
+    console.log('************************formattedQuestion', formattedQuestion)
     setTimeout(() => {
       questions = {
         ...questions,
@@ -186,6 +189,8 @@ export function _saveQuestion(question) {
 }
 
 export function _saveQuestionAnswer({ authUser, qid, answer }) {
+  console.log(">>>>>>>>_saveQuestionAnswer: ", { authUser, qid, answer });
+  console.log(">>>>>>>>_saveQuestionAnswer: ", [qid], answer );
   return new Promise((resolve, reject) => {
     if (!authUser || !qid || !answer) {
       reject("Please provide authedUser, qid, and answer");
@@ -193,12 +198,12 @@ export function _saveQuestionAnswer({ authUser, qid, answer }) {
 
     setTimeout(() => {
       users = {
-        ...users,
+        ...users,                           // previous state
         [authUser]: {
-          ...users[authUser],
+          ...users[authUser],               // previous state of authUser
           answers: {
-            ...users[authUser].answers,
-            [qid]: answer,
+            ...users[authUser].answers,     // previous answers of the authUser 
+            [qid]: answer,                  // add or update the new answer
           },
         },
       };
@@ -213,8 +218,8 @@ export function _saveQuestionAnswer({ authUser, qid, answer }) {
           },
         },
       };
-
-      resolve(true);
+      resolve();
+      //resolve(true);
     }, 500);
   });
 }
