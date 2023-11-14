@@ -176,7 +176,6 @@ export function _saveQuestion(question) {
     }
 
     const formattedQuestion = formatQuestion(question);
-    console.log('************************formattedQuestion', formattedQuestion)
     setTimeout(() => {
       questions = {
         ...questions,
@@ -189,8 +188,6 @@ export function _saveQuestion(question) {
 }
 
 export function _saveQuestionAnswer({ authUser, qid, answer }) {
-  console.log(">>>>>>>>_saveQuestionAnswer: ", { authUser, qid, answer });
-  console.log(">>>>>>>>_saveQuestionAnswer: ", [qid], answer );
   return new Promise((resolve, reject) => {
     if (!authUser || !qid || !answer) {
       reject("Please provide authedUser, qid, and answer");

@@ -3,8 +3,6 @@ import { connect } from "react-redux";
 import { usersWithAnswers } from "../utils/helpers";
 
 const Leaderboard = (props) => {
-  console.log('Leaderboard', props)
-
   return (
     <div className="table-wrapper">
       <table className="table-border">
@@ -31,7 +29,7 @@ const Leaderboard = (props) => {
                   <div>{user.id}</div>
                 </td>
                 <td>{user.answered}</td>
-                <td>Created: {user.questions.length}</td>
+                <td>{user.questions.length}</td>
               </tr>
             );
           })}
@@ -42,7 +40,7 @@ const Leaderboard = (props) => {
 };
 
 const mapStateToProps = ({ authedUser, users, questions }) => {
-  console.log('>>>>>>>>>>>>>mapStateToProps<<<<<<<<<<<<<<<<<<<<<<', users)
+  console.log(">>>>>>>>>>>>>mapStateToProps<<<<<<<<<<<<<<<<<<<<<<", users);
   // TODO: DELETE the part which is not needed - !
   return {
     userArray: Object.values(users),
