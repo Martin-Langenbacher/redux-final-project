@@ -39,7 +39,6 @@ function App(props) {
     <Fragment>
       <LoadingBar />
       <div className="container">
-        {/* {userOK ? <Nav /> : <Login />} */}
         {props.authedUser ? <Nav /> : <Login />}
         {props.loading === true ? null : (
           <Routes>

@@ -2,18 +2,6 @@ import { useState } from "react";
 import { connect, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-/*
-
-import { connect, useDispatch } from "react-redux";
-
-import PollResults from "./PollResults";
-import { handleSaveQuestionAnswer } from "../actions/users";
-
-const PollPage = (props) => {
-  const { id } = useParams();
-  const dispatch = useDispatch();
-*/
-
 import { handleAddQuestion } from "../actions/questions";
 import { addQuestionToUser } from "../actions/users";
 
@@ -70,7 +58,6 @@ const NewQuestion = (props) => {
         {questionTextOneLeft <= startToShow && (
           <div className="question-length">{questionTextOneLeft}</div>
         )}
-
         <h5>Second Option</h5>
         <textarea
           placeholder="Option Two"
@@ -100,18 +87,3 @@ const mapStateToProps = ({ authedUser, questions }) => ({
 });
 
 export default connect(mapStateToProps)(NewQuestion);
-
-/*
-const mapStateToProps = ({ authedUser, users, questions }) => {
-  return {
-    authUser: authedUser,
-    userId: Object.keys(users),
-    avatar: users[authedUser],
-    questions: questions,
-    users,
-  };
-};
-
-*/
-
-//export default connect()(NewQuestion);

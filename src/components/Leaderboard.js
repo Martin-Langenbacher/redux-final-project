@@ -39,14 +39,13 @@ const Leaderboard = (props) => {
   );
 };
 
-const mapStateToProps = ({ authedUser, users, questions }) => {
-  console.log(">>>>>>>>>>>>>mapStateToProps<<<<<<<<<<<<<<<<<<<<<<", users);
-  // TODO: DELETE the part which is not needed - !
+const mapStateToProps = ({ users, questions }) => {
   return {
-    userArray: Object.values(users),
-    questions: questions,
-    users,
     usersWithAnswers: Object.values(usersWithAnswers(questions, users)),
+    // TODO: DELETE the part which is not needed - !
+    //userArray: Object.values(users),
+    //questions: questions,
+    //users,
   };
 };
 
