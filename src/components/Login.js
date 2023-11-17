@@ -53,6 +53,7 @@ const Login = (props) => {
                   placeholder="Username"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
+                  data-testid='username-input-field'
                 />
               </div>
               <div className={classes.control}>
@@ -63,9 +64,10 @@ const Login = (props) => {
                   placeholder="Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  data-testid='password-input-field'
                 />
               </div>
-              <button className={classes.buttonStyle} onClick={handleLogin}>Login</button>
+              <button className={classes.buttonStyle} onClick={handleLogin} data-testid='login-button-exists'>Login</button>
             </form>
           </section>
         </main>

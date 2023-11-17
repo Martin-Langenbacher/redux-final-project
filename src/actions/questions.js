@@ -39,9 +39,7 @@ export function handleAddQuestion(optionText1, optionText2) {
     })
       .then((question) => dispatch(addQuestion(question)))
       .then((payload) => {return payload.question.id}) 
-      // .then((payload) => console.log('????????????????', payload.question.id) )
       // .then(() => dispatch(hideLoading()))
-      // .then(() => {return 5})
   };
 }
 

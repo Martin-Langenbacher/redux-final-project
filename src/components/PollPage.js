@@ -1,16 +1,23 @@
 import { useParams } from "react-router-dom";
 import { connect, useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
 
 import PollResults from "./PollResults";
 import { handleSaveQuestionAnswer } from "../actions/users";
+import classes from "./PollPage.module.css";
 
 const PollPage = (props) => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
-  if (props.questions[id] === undefined || props.questions[id] === null) {
-    return <p>This Question doesn't exist!</p>;
-  }
+  const [buttonOneColor, setButtonOneColor] = useState({
+    background: "#3498db",
+  });
+  const [buttonTwoColor, setButtonTwoColor] = useState({
+    background: "#3498db",
+  });
+  const [buttonTextOne, setButtonTextOne] = useState("Click");
+  const [buttonTextTwo, setButtonTextTwo] = useState("Click");
 
   const questionText1 = props.questions[id].optionOne.text;
   const questionText2 = props.questions[id].optionTwo.text;
@@ -23,16 +30,51 @@ const PollPage = (props) => {
     props.users[props.authUser].answers
   ).includes(props.questions[id].id);
 
+  const answerOfauthedUser =
+    props.users[props.authUser].answers[props.questions[id].id];
+
+  useEffect(() => {
+    if (authedUserAlreadyAnswered) {
+      setButtonOneColor({
+        backgroundColor:
+          answerOfauthedUser === "optionOne" ? "#33956a" : "#ba7171",
+      });
+      setButtonTwoColor({
+        backgroundColor:
+          answerOfauthedUser === "optionTwo" ? "#33956a" : "#ba7171",
+      });
+      setButtonTextOne(
+        answerOfauthedUser === "optionOne" ? "Your anser!" : "- - -"
+      );
+      setButtonTextTwo(
+        answerOfauthedUser === "optionTwo" ? "Your anser!" : "- - -"
+      );
+    }
+  }, [
+    props.users,
+    props.authUser,
+    props.questions,
+    id,
+    authedUserAlreadyAnswered,
+    answerOfauthedUser,
+  ]);
+
+  if (props.questions[id] === undefined || props.questions[id] === null) {
+    return <p>This Question doesn't exist!</p>;
+  }
+
   const vote = (e) => {
     e.preventDefault();
 
-    dispatch(
-      handleSaveQuestionAnswer(
-        props.authUser,
-        props.questions[id].id,
-        e.target.value
-      )
-    );
+    if (!authedUserAlreadyAnswered) {
+      dispatch(
+        handleSaveQuestionAnswer(
+          props.authUser,
+          props.questions[id].id,
+          e.target.value
+        )
+      );
+    }
   };
 
   return (
@@ -55,14 +97,24 @@ const PollPage = (props) => {
           <div className="container-poll-page">
             <div className="poll-text-left">
               <div className="poll-text-text">{questionText1}</div>
-              <button value="optionOne" className="btn-poll" onClick={vote}>
-                Click
+              <button
+                value="optionOne"
+                className={classes["btn-poll"]}
+                style={buttonOneColor}
+                onClick={vote}
+              >
+                {buttonTextOne}
               </button>
             </div>
             <div className="poll-text-right">
               <div className="poll-text-text">{questionText2}</div>
-              <button value="optionTwo" className="btn-poll" onClick={vote}>
-                Click
+              <button
+                value="optionTwo"
+                className={classes["btn-poll"]}
+                style={buttonTwoColor}
+                onClick={vote}
+              >
+                {buttonTextTwo}
               </button>
             </div>
           </div>
