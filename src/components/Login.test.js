@@ -1,5 +1,5 @@
-import { render, screen } from "@testing-library/react";
-//import { render, screen } from "@testing-library/react";
+import { getByPlaceholderText, render, screen } from "@testing-library/react";
+//import "@testing-library/jest-dom/extend-expect";
 import { createStore } from "redux";
 import * as React from "react";
 import { MemoryRouter } from "react-router-dom";
@@ -15,7 +15,8 @@ describe("Login", () => {
 
     //const store = createStore(rootReducer)
     const store = createStore(reducer, middleware);
-    render(
+    // eslint-disable-next-line testing-library/render-result-naming-convention
+    var componentML = render(
       <Provider store={store}>
         <MemoryRouter>
           <Login />
@@ -23,18 +24,19 @@ describe("Login", () => {
       </Provider>
     );
 
-    /*
-    // eslint-disable-next-line testing-library/prefer-screen-queries
-    var labels = loginComponent.getAllByText(/name/);
-    expect(labels.length).toEqual(2);
-    */
+    
 
-    var usernameInput = screen.getByTestId("username-input-field");
-    var passwordInput = screen.getByTestId("password-input-field");
+    // eslint-disable-next-line testing-library/prefer-screen-queries
+    var usernameInput = componentML.getByTestId("username-input-field");
+    var value = usernameInput
+    //console.log('*********************:', value)
+    // eslint-disable-next-line testing-library/prefer-screen-queries
+    var passwordInput = componentML.getByTestId("password-input-field");
     expect(usernameInput).toBeInTheDocument();
     expect(passwordInput).toBeInTheDocument();
 
-    var loginButton = screen.getByTestId("login-button-exists");
+    // eslint-disable-next-line testing-library/prefer-screen-queries
+    var loginButton = componentML.getByTestId("login-button-exists");
     expect(loginButton).toBeInTheDocument();
 
     //expect(loginComponent).toMatchSnapshot();
