@@ -215,8 +215,7 @@ export function _saveQuestionAnswer({ authUser, qid, answer }) {
           },
         },
       };
-      resolve();
-      //resolve(true);
+      resolve(true);
     }, 500);
   });
 }
