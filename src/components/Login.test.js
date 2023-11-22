@@ -12,7 +12,7 @@ import middleware from "../middleware";
 
 
 describe("Login", () => {
-  it("will have all expected fields", () => {
+  it("7) will have all expected fields", () => {
     // TODO: that the test does not fail !!!
     console.log("Login.test.js --> DOES NOT work yet!");
 
@@ -44,6 +44,11 @@ describe("Login", () => {
     //expect(loginComponent).toMatchSnapshot();
     */
   }); 
+
+  it("8) See an error on the page - in case the input data are not correct", () => {
+    // TODO: that the test does not fail !!!
+    console.log("Login.test.js --> DOES NOT work yet!");
+  })
 
 
 

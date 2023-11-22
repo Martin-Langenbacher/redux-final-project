@@ -41,17 +41,4 @@ describe("_DATA", () => {
       _saveQuestionAnswer({ authUser, qid, answer })
     ).rejects.toEqual("Please provide authedUser, qid, and answer");
   });
-
-  it("5) _saveQuestionAnswer: error is returned when data was incorrect", async () => {
-    /*
-    const authUser = 'wrongUser'
-     // const authUser = 'zoshikanlu'
-    const qid = "6ni6ok3ym7mf1p33lnez";
-    const answer = "optionOne99";
-
-    await expect(
-      _saveQuestionAnswer({ authUser, qid, answer })
-    ).rejects.toThrow("Invalid authedUser");
-    */
-  });
 });

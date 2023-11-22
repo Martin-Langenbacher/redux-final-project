@@ -102,6 +102,7 @@ const PollPage = (props) => {
                 className={classes["btn-poll"]}
                 style={buttonOneColor}
                 onClick={vote}
+                data-testid="optionOne-button"
               >
                 {buttonTextOne}
               </button>
