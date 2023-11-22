@@ -1,8 +1,18 @@
 const PollResults = ({ optionOneAmount, optionTwoAmount }) => {
   const totalAmount = optionOneAmount + optionTwoAmount;
 
-  const percentOne = Math.round(1000 * (optionOneAmount / totalAmount)) / 10;
-  const percentTwo = Math.round(1000 * (optionTwoAmount / totalAmount)) / 10;
+  
+
+  const percentOne = calculatePercentage(optionOneAmount, totalAmount);
+  const percentTwo = calculatePercentage(optionTwoAmount, totalAmount);
+  // const percentOne = Math.round(1000 * (optionOneAmount / totalAmount)) / 10;
+  // const percentTwo = Math.round(1000 * (optionTwoAmount / totalAmount)) / 10;
+
+  /*
+  module.exports = {
+    calculatePercentage,
+  };
+  */
 
   return (
     <>
@@ -36,6 +46,10 @@ const PollResults = ({ optionOneAmount, optionTwoAmount }) => {
       </div>
     </>
   );
+};
+
+export function  calculatePercentage (amount, totalAmount) {
+  return Math.round(1000 * (amount / totalAmount)) / 10;
 };
 
 export default PollResults;
