@@ -8,13 +8,19 @@ const Nav = (props, { token, onLogout }) => {
         <div className="float-child-element">
           <div className="navbar-left">
             <li>
-              <NavLink to="/">Home</NavLink>
+              <NavLink to="/" data-testid="navigation-navlink-home">
+                Home
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/leaderboard">Leaderboard</NavLink>
+              <NavLink to="/leaderboard" data-testid="navigation-navlink-leaderboard">
+                Leaderboard
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/new">New</NavLink>
+              <NavLink to="/new" data-testid="navigation-navlink-new">
+                New
+              </NavLink>
             </li>
           </div>
         </div>
@@ -30,7 +36,9 @@ const Nav = (props, { token, onLogout }) => {
 
             <div className="after-picture-special">{props.authUser}</div>
             <li>
-              <NavLink to="/logout">Logout</NavLink>
+              <NavLink to="/logout" data-testid="navigation-navlink-logout">
+                Logout
+              </NavLink>
             </li>
           </div>
         </div>
