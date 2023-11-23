@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import { createStore } from "redux";
 import * as React from "react";
 import { MemoryRouter } from "react-router-dom";
@@ -36,7 +36,46 @@ describe("Login", () => {
   });
 
   it("8) See an error on the page - in case the input data are not correct", () => {
-    // TODO: that the test does not fail !!!
-    console.log("Login.test.js --> DOES NOT work yet!");
+    const route = "/login";
+
+    let alertedMessage;
+    const store = createStore(reducer, middleware);
+    const mockAlert = jest.spyOn(window, "alert");
+    mockAlert.mockImplementation((message) => {
+      alertedMessage = message;
+    }); // Provide an empty implementation
+
+    var view = render(
+      <Provider store={store}>
+        <MemoryRouter initialEntries={[route]}>
+          <Login store={store} />
+        </MemoryRouter>
+      </Provider>
+    );
+
+    const userNameForTest = "mtsamis";
+    const wrongPasswordForTest = null;
+
+    // eslint-disable-next-line testing-library/prefer-screen-queries
+    var userNameInput = view.getByTestId("username-input-field");
+
+    // eslint-disable-next-line testing-library/prefer-screen-queries
+    var passwordInput = view.getByTestId("password-input-field");
+
+    fireEvent.change(userNameInput, { target: { value: userNameForTest } });
+    fireEvent.change(passwordInput, {
+      target: { value: wrongPasswordForTest },
+    });
+
+    // eslint-disable-next-line testing-library/prefer-screen-queries
+    const loginButton = view.getByTestId("login-button-exists");
+    fireEvent.click(loginButton);
+    //expect(newLink).toBeDefined();
+    console.log("alertedMessage", alertedMessage);
+    expect(alertedMessage).toBe("Invalid username: User does not exist!");
+
+    alertedMessage = ''
+
+    mockAlert.mockRestore();
   });
 });

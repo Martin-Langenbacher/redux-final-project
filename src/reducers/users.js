@@ -11,7 +11,6 @@ export default function users(state = {}, action) {
         ...state,
         ...action.users,
       };
-    // TODO: add is working, but not in case the answer is switched...
     case ADD_ANSWER_TO_USER:
       const { authUser, qid, answer } = action;
       return {
