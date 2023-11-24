@@ -1,9 +1,8 @@
 import * as React from "react";
-import { getAllByRole, render } from "@testing-library/react";
+import {  render } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { createStore } from "redux";
-import { Provider } from "react-redux";
-import configureStore from "redux-mock-store";
+import { Provider } from "react-redux"
 
 import Nav from "./Nav";
 import reducer from "../reducers";

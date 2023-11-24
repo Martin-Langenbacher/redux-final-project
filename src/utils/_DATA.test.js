@@ -1,7 +1,5 @@
 import { _saveQuestion, _saveQuestionAnswer } from "./_DATA.js";
 
-//var { isUtensilAvailable } = require("./multiply");
-
 describe("_DATA", () => {
   it("1) _saveQuestion is returned when all expected fields are populated correctly", async () => {
     const question = {
@@ -32,7 +30,6 @@ describe("_DATA", () => {
   });
 
   it("4) _saveQuestionAnswer: error is returned when data was incorrect", async () => {
-    //const authUser = 'zoshikanlu'
     const authUser = null;
     const qid = "6ni6ok3ym7mf1p33lnez";
     const answer = "optionOne";

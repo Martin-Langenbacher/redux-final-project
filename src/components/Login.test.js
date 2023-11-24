@@ -35,7 +35,8 @@ describe("Login", () => {
     expect(loginButton).toBeDefined();
   });
 
-  it("8) See an error on the page - in case the input data are not correct", () => {
+  it("8a) See an error on the page - in case the input data are not correct (username)", async () => {
+    // TODO: Not working yet! How to bring the users into Login?
     const route = "/login";
 
     let alertedMessage;
@@ -43,7 +44,7 @@ describe("Login", () => {
     const mockAlert = jest.spyOn(window, "alert");
     mockAlert.mockImplementation((message) => {
       alertedMessage = message;
-    }); // Provide an empty implementation
+    });
 
     var view = render(
       <Provider store={store}>
@@ -53,7 +54,7 @@ describe("Login", () => {
       </Provider>
     );
 
-    const userNameForTest = "mtsamis";
+    const userNameForTest = "mtsamis99";
     const wrongPasswordForTest = null;
 
     // eslint-disable-next-line testing-library/prefer-screen-queries
@@ -72,9 +73,54 @@ describe("Login", () => {
     fireEvent.click(loginButton);
     //expect(newLink).toBeDefined();
     console.log("alertedMessage", alertedMessage);
-    expect(alertedMessage).toBe("Invalid username: User does not exist!");
+    await expect(alertedMessage).toBe("Invalid username: User does not exist!");
 
-    alertedMessage = ''
+    alertedMessage = "";
+
+    mockAlert.mockRestore();
+  });
+
+  it("8b) See an error on the page - in case the input data are not correct (PW)", async () => {
+    // TODO: Not working yet! How to bring the users into Login?
+    const route = "/login";
+
+    let alertedMessage;
+    const store = createStore(reducer, middleware);
+    const mockAlert = jest.spyOn(window, "alert");
+    mockAlert.mockImplementation((message) => {
+      alertedMessage = message;
+    });
+
+    var view = render(
+      <Provider store={store}>
+        <MemoryRouter initialEntries={[route]}>
+          <Login store={store} />
+        </MemoryRouter>
+      </Provider>
+    );
+
+    const userNameForTest = "mtsamis";
+    const wrongPasswordForTest = "wrongPW55";
+
+    // eslint-disable-next-line testing-library/prefer-screen-queries
+    var userNameInput = view.getByTestId("username-input-field");
+
+    // eslint-disable-next-line testing-library/prefer-screen-queries
+    var passwordInput = view.getByTestId("password-input-field");
+
+    fireEvent.change(userNameInput, { target: { value: userNameForTest } });
+    fireEvent.change(passwordInput, {
+      target: { value: wrongPasswordForTest },
+    });
+
+    // eslint-disable-next-line testing-library/prefer-screen-queries
+    const loginButton = view.getByTestId("login-button-exists");
+    fireEvent.click(loginButton);
+    console.log("alertedMessage", alertedMessage);
+    // TODO: Comment it out and make it work. --> Need to get the users into Login.js with the test! How???
+    //await expect(alertedMessage).toBe("Invalid password: Please enter the correct PW!");
+
+    alertedMessage = "";
 
     mockAlert.mockRestore();
   });

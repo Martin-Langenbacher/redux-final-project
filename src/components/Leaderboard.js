@@ -8,9 +8,9 @@ const Leaderboard = (props) => {
       <table className="table-border">
         <thead>
           <tr>
-            <th>Users</th>
-            <th>Answered</th>
-            <th>Created</th>
+            <th data-testid="username-leaderboard">Users</th>
+            <th data-testid="answered-question-leaderboard">Answered</th>
+            <th data-testid="question-created-leaderboard">Created</th>
           </tr>
         </thead>
         <tbody>
@@ -25,11 +25,17 @@ const Leaderboard = (props) => {
                       className="user-iconSmall"
                     />
                   </div>
-                  <div key={user.id}>{user.name}</div>
-                  <div>{user.id}</div>
+                  <div key={user.id} >
+                    {user.name}
+                  </div>
+                  <div data-testid="username-value">{user.id}</div>
                 </td>
-                <td>{user.answered}</td>
-                <td>{user.questions.length}</td>
+                <td data-testid="answered-question-leaderboard-value">
+                  {user.answered}
+                </td>
+                <td data-testid="question-created-leaderboard-value">
+                  {user.questions.length}
+                </td>
               </tr>
             );
           })}

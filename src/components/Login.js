@@ -14,6 +14,7 @@ const Login = (props) => {
   const dispatch = useDispatch();
 
   const handleLogin = (e) => {
+    console.log('1-) >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> handleLogin: ', props.users[0])
     e.preventDefault();
 
     // 1) user exists - or not
@@ -25,6 +26,7 @@ const Login = (props) => {
       return;
     }
 
+    console.log('2-) >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> handleLogin: ', props.users)
     // 2) if user exists, is pw correct?
     if (userIfExists[0].password === password) {
       // 3) LogIn
