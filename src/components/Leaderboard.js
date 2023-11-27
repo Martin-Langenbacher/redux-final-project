@@ -3,6 +3,13 @@ import { connect } from "react-redux";
 import { usersWithAnswers } from "../utils/helpers";
 
 const Leaderboard = (props) => {
+  const listBeforeSorting = props.usersWithAnswers;
+
+  const listAfterSorting = listBeforeSorting.sort(
+    (a, b) =>
+      b.answered + b.questions.length - (a.answered + a.questions.length)
+  );
+
   return (
     <div className="table-wrapper">
       <table className="table-border">
@@ -14,7 +21,7 @@ const Leaderboard = (props) => {
           </tr>
         </thead>
         <tbody>
-          {props.usersWithAnswers.map((user) => {
+          {listAfterSorting.map((user) => {
             return (
               <tr key={user.id}>
                 <td>
@@ -25,9 +32,7 @@ const Leaderboard = (props) => {
                       className="user-iconSmall"
                     />
                   </div>
-                  <div key={user.id} >
-                    {user.name}
-                  </div>
+                  <div key={user.id}>{user.name}</div>
                   <div data-testid="username-value">{user.id}</div>
                 </td>
                 <td data-testid="answered-question-leaderboard-value">
