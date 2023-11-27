@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import React, { useState } from "react";
 
 import Question from "./Question";
 import {
@@ -7,32 +8,52 @@ import {
 } from "../utils/helpers";
 
 const Dashboard = (props) => {
+  const [newQuestion, setNewQuestion] = useState(true);
+
+  const handleClick = () => {
+    setNewQuestion(!newQuestion);
+  };
+
   return (
     <>
-      <div>
-        <h3 className="center">New Questions /Dashboard (Protected)</h3>
-        <ul>
-          <div className="dashboard-container">
-            {props.iDsNewQuestions.map((id) => (
-              <li key={id} className="dashboard-box">
-                <Question id={id} />
-              </li>
-            ))}
+      {newQuestion && (
+        <div>
+          <h3 className="center">New Questions /Dashboard (Protected page)</h3>
+          <ul>
+            <div className="dashboard-container">
+              {props.iDsNewQuestions.map((id) => (
+                <li key={id} className="dashboard-box">
+                  <Question id={id} />
+                </li>
+              ))}
+            </div>
+          </ul>
+          <div className="dashboard-btn-container">
+            <button onClick={handleClick} className="dashboard-btn">
+              Show answered questions
+            </button>
           </div>
-        </ul>
-      </div>
-      <div>
-        <h3 className="center">Done</h3>
-        <ul>
-          <div className="dashboard-container">
-            {props.iDsDoneQuestions.map((id) => (
-              <li key={id} className="dashboard-box">
-                <Question id={id} />
-              </li>
-            ))}
+        </div>
+      )}
+      {!newQuestion && (
+        <div>
+          <h3 className="center">Done</h3>
+          <ul>
+            <div className="dashboard-container">
+              {props.iDsDoneQuestions.map((id) => (
+                <li key={id} className="dashboard-box">
+                  <Question id={id} />
+                </li>
+              ))}
+            </div>
+          </ul>
+          <div className="dashboard-btn-container">
+            <button onClick={handleClick} className="dashboard-btn">
+              Show new qestions
+            </button>
           </div>
-        </ul>
-      </div>
+        </div>
+      )}
     </>
   );
 };
@@ -42,16 +63,10 @@ const mapStateToProps = ({ authedUser, questions }) => ({
     (a, b) => questions[a].timestamp - questions[b].timestamp
   ),
   authedUser,
-  //questionIdsDone: Object.keys(questions),
-  // questionIdsDone: Object.keys(questions).filter((question) => question.optionOne?.votes.includes('sarahedo')),
-
-  // TODO - FILTER
   iDsNewQuestions: Object.keys(getIdsForNewQuestions(authedUser, questions)),
-  //.sort((a, b) => a.bla-b.bla),
   iDsDoneQuestions: Object.keys(getIdsForDoneQuestions(authedUser, questions)),
 
   questions,
 });
 
 export default connect(mapStateToProps)(Dashboard);
-

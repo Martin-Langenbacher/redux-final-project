@@ -18,8 +18,8 @@ const Nav = (props, { token, onLogout }) => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/new" data-testid="navigation-navlink-new">
-                New
+              <NavLink to="/add" data-testid="navigation-navlink-new">
+                Add
               </NavLink>
             </li>
           </div>

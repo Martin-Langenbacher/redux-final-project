@@ -45,7 +45,7 @@ function App(props) {
             <Route path="/" exact element={<Dashboard />} />
             <Route path="/leaderboard" element={<Leaderboard />} />
             <Route path="/question/:id" element={<PollPage />} />
-            <Route path="/new" element={<NewQuestion />} />
+            <Route path="/add" element={<NewQuestion />} />
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="*" element={<NoMatch />} />

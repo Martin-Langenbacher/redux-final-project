@@ -19,8 +19,10 @@ const PollPage = (props) => {
   const [buttonTextOne, setButtonTextOne] = useState("Click");
   const [buttonTextTwo, setButtonTextTwo] = useState("Click");
 
-  const questionText1 = props.questions[id].optionOne.text;
-  const questionText2 = props.questions[id].optionTwo.text;
+  console.log(' ================================================ I am here', props.questions)
+  const questionText1 = props.questions[id].optionOne?.text;
+  const questionText2 = props.questions[id].optionTwo?.text;
+  console.log(' 22 ================================================ I am here')
   const authorOfQuestion = props.questions[id].author;
   const authorOfQuestionURL = props.users[authorOfQuestion].avatarURL;
   const optionOneAmount = props.questions[id].optionOne.votes.length;
