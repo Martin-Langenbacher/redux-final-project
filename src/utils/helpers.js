@@ -73,6 +73,8 @@ export function getIdsForNewQuestions(authedUser, questions) {
       !question.optionTwo?.votes.includes(authedUser)
   );
 
+  iDsForNewQuestions.sort((a, b) => b.timestamp - a.timestamp);
+
   // Convert the filtered array back to an object
   const iDsForNewQuestionsObject = iDsForNewQuestions.reduce(
     (acc, question) => {
@@ -94,6 +96,8 @@ export function getIdsForDoneQuestions(authedUser, questions) {
       question.optionOne?.votes.includes(authedUser) ||
       question.optionTwo?.votes.includes(authedUser)
   );
+
+  iDsForDoneQuestions.sort((a, b) => b.timestamp - a.timestamp);
 
   // Convert the filtered array back to an object
   const iDsForDoneQuestionsObject = iDsForDoneQuestions.reduce(

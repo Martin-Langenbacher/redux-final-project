@@ -14,7 +14,6 @@ const Login = (props) => {
   const dispatch = useDispatch();
 
   const handleLogin = (e) => {
-    console.log('1-) >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> handleLogin: ', props.users[0])
     e.preventDefault();
 
     // 1) user exists - or not
@@ -26,7 +25,6 @@ const Login = (props) => {
       return;
     }
 
-    console.log('2-) >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> handleLogin: ', props.users)
     // 2) if user exists, is pw correct?
     if (userIfExists[0].password === password) {
       // 3) LogIn
@@ -55,7 +53,7 @@ const Login = (props) => {
                   placeholder="Username"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  data-testid='username-input-field'
+                  data-testid="username-input-field"
                 />
               </div>
               <div className={classes.control}>
@@ -66,10 +64,16 @@ const Login = (props) => {
                   placeholder="Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  data-testid='password-input-field'
+                  data-testid="password-input-field"
                 />
               </div>
-              <button className={classes.buttonStyle} onClick={handleLogin} data-testid='login-button-exists'>Login</button>
+              <button
+                className={classes.buttonStyle}
+                onClick={handleLogin}
+                data-testid="login-button-exists"
+              >
+                Login
+              </button>
             </form>
           </section>
         </main>
@@ -83,4 +87,3 @@ const mapStateToProps = ({ users }) => ({
 });
 
 export default connect(mapStateToProps)(Login);
-

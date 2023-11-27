@@ -47,6 +47,7 @@ const mapStateToProps = ({ authedUser, questions }) => ({
 
   // TODO - FILTER
   iDsNewQuestions: Object.keys(getIdsForNewQuestions(authedUser, questions)),
+  //.sort((a, b) => a.bla-b.bla),
   iDsDoneQuestions: Object.keys(getIdsForDoneQuestions(authedUser, questions)),
 
   questions,

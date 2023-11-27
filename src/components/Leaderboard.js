@@ -4,7 +4,6 @@ import { usersWithAnswers } from "../utils/helpers";
 
 const Leaderboard = (props) => {
   const listBeforeSorting = props.usersWithAnswers;
-
   const listAfterSorting = listBeforeSorting.sort(
     (a, b) =>
       b.answered + b.questions.length - (a.answered + a.questions.length)
