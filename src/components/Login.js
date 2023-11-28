@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, connect } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import classes from "./Login.module.css";
 import { setAuthedUser } from "../actions/authedUser";
@@ -8,19 +8,10 @@ import { setAuthedUser } from "../actions/authedUser";
 const Login = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  //const [navigateString, setNavigateString] = useState("/");
-
-  //const { id } = useParams();
-  //setNavigateString(id)
-  
 
   const navigate = useNavigate();
   const { pathname } = window.location;
   const dispatch = useDispatch();
-  console.log('rrrrrrrrrrrrrrrr>>>>', pathname)
-
-
-
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -40,7 +31,7 @@ const Login = (props) => {
       console.log("Login - O K !!!");
       //setLoggedIn(true);
       dispatch(setAuthedUser(username));
-      navigate(pathname === "/login" ? '/' : pathname);
+      navigate(pathname === "/login" ? "/" : pathname);
     } else {
       alert("Invalid password: Please enter the correct PW!");
       return;

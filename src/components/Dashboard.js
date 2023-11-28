@@ -19,6 +19,13 @@ const Dashboard = (props) => {
       {newQuestion && (
         <div>
           <h3 className="center">New Questions /Dashboard (Protected page)</h3>
+          {props.iDsNewQuestions.length < 1 && (
+            <div className="dashboard-container-no-content">
+              <div className="dashboard-container-no-content-text">
+                <p>There is no New Question available!</p>
+              </div>
+            </div>
+          )}
           <ul>
             <div className="dashboard-container">
               {props.iDsNewQuestions.map((id) => (
@@ -28,6 +35,7 @@ const Dashboard = (props) => {
               ))}
             </div>
           </ul>
+
           <div className="dashboard-btn-container">
             <button onClick={handleClick} className="dashboard-btn">
               Show answered questions
@@ -38,6 +46,13 @@ const Dashboard = (props) => {
       {!newQuestion && (
         <div>
           <h3 className="center">Done</h3>
+          {props.iDsDoneQuestions.length < 1 && (
+            <div className="dashboard-container-no-content">
+              <div className="dashboard-container-no-content-text">
+                <p>You have not answered any question, yet.</p>
+              </div>
+            </div>
+          )}
           <ul>
             <div className="dashboard-container">
               {props.iDsDoneQuestions.map((id) => (

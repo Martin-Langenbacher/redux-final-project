@@ -9,6 +9,7 @@ import classes from "./PollPage.module.css";
 const PollPage = (props) => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const { users, questions } = props;
 
   const [buttonOneColor, setButtonOneColor] = useState({
     background: "#3498db",
@@ -19,21 +20,15 @@ const PollPage = (props) => {
   const [buttonTextOne, setButtonTextOne] = useState("Click");
   const [buttonTextTwo, setButtonTextTwo] = useState("Click");
 
-  console.log(' ================================================ I am here', props.questions)
-  const questionText1 = props.questions[id].optionOne?.text;
-  const questionText2 = props.questions[id].optionTwo?.text;
-  console.log(' 22 ================================================ I am here')
-  const authorOfQuestion = props.questions[id].author;
-  const authorOfQuestionURL = props.users[authorOfQuestion].avatarURL;
-  const optionOneAmount = props.questions[id].optionOne.votes.length;
-  const optionTwoAmount = props.questions[id].optionTwo.votes.length;
+  const authedUserAlreadyAnswered = questions[id]
+    ? Object.keys(users[props.authUser].answers).includes(
+        props.questions[id].id
+      )
+    : false;
 
-  const authedUserAlreadyAnswered = Object.keys(
-    props.users[props.authUser].answers
-  ).includes(props.questions[id].id);
-
-  const answerOfauthedUser =
-    props.users[props.authUser].answers[props.questions[id].id];
+  const answerOfauthedUser = questions[id]
+    ? users[props.authUser].answers[questions[id].id]
+    : "No Answer";
 
   useEffect(() => {
     if (authedUserAlreadyAnswered) {
@@ -53,17 +48,24 @@ const PollPage = (props) => {
       );
     }
   }, [
-    props.users,
+    users,
     props.authUser,
-    props.questions,
+    questions,
     id,
     authedUserAlreadyAnswered,
     answerOfauthedUser,
   ]);
 
-  if (props.questions[id] === undefined || props.questions[id] === null) {
+  if (questions[id] === undefined || questions[id] === null) {
     return <p>This Question doesn't exist!</p>;
   }
+
+  const questionText1 = questions[id].optionOne.text;
+  const questionText2 = questions[id].optionTwo.text;
+  const authorOfQuestion = questions[id].author;
+  const authorOfQuestionURL = users[authorOfQuestion].avatarURL;
+  const optionOneAmount = questions[id].optionOne.votes.length;
+  const optionTwoAmount = questions[id].optionTwo.votes.length;
 
   const vote = (e) => {
     e.preventDefault();
@@ -72,7 +74,7 @@ const PollPage = (props) => {
       dispatch(
         handleSaveQuestionAnswer(
           props.authUser,
-          props.questions[id].id,
+          questions[id].id,
           e.target.value
         )
       );

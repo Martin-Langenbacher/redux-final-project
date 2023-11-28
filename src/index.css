@@ -354,6 +354,18 @@ li {
   margin-bottom: 40px;
 }
 
+.dashboard-container-no-content {
+  display:flexbox;
+  flex-direction: row;
+  margin-bottom: 40px;
+  margin-top: 40px;
+}
+
+.dashboard-container-no-content-text {
+  text-align: center;
+  padding: 10px;
+}
+
 .dashboard-box {
   text-align: center;
 }
